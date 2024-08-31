@@ -1,154 +1,293 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import { Link as ScrollLink } from "react-scroll";
+import { Link, useLocation } from "react-router-dom";
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+const Navbar = () => {
+  const [isSticky, setIsSticky] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const scrollThreshold = 20;
+
+      if (scrollPosition > scrollThreshold && !isSticky) {
+        setIsSticky(true);
+      } else if (scrollPosition <= scrollThreshold && isSticky) {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isSticky]);
+
+  useEffect(() => {
+    setCurrentPage(location.pathname);
+  }, [location]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
-    <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 shadow-md">
-      <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-        <a href="/" className="flex items-center">
-          <img src="/logo.png" className="h-6 mr-3 sm:h-9" alt="Logo" />
-          <span className="self-center text-xl font-semibold whitespace-nowrap">
+    <div
+      className={`${
+        isSticky
+          ? "fixed top-0 left-0 right-0 bg-white shadow-lg text-[#12123E] border-gray-200 dark:bg-gray-900"
+          : "bg-white text-[#12123E] border-gray-200 dark:bg-gray-900"
+      } ${isSticky ? "p-1" : ""} transition-all duration-2000`}
+      style={{ zIndex: 1000 }}
+    >
+      <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-4">
+        <a href="/" className="flex items-center p-4 lg:p-0">
+          <span className="self-center lg:text-2xl font-semibold whitespace-nowrap dark:text-white">
             Leave Management
           </span>
         </a>
-
-        <div className="flex lg:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            type="button"
-            className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-            aria-controls="mobile-menu"
-            aria-expanded={isOpen}
-          >
-            <span className="sr-only">Open main menu</span>
-            {!isOpen ? (
-              <svg
-                className="w-6 h-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 5h14a1 1 0 110 2H3a1 1 0 110-2zm0 5h14a1 1 0 110 2H3a1 1 0 110-2zm0 5h14a1 1 0 110 2H3a1 1 0 110-2z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            ) : (
-              <svg
-                className="w-6 h-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            )}
+        <ul className="font-medium hidden md:flex p-0 space-x-8">
+          {currentPage === "/features" ? (
+            <>
+              <li>
+                <Link
+                  to="/"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <ScrollLink
+                  to="features-1"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Feature 1
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="features-2"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Feature 2
+                </ScrollLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <ScrollLink
+                  to="hero"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Home
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="features"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Features
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="about"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  About
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="contact"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Contact
+                </ScrollLink>
+              </li>
+            </>
+          )}
+        </ul>
+        <div className="hidden md:flex space-x-4 items-center">
+          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition">
+            Login
+          </button>
+          <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition">
+            Sign Up
           </button>
         </div>
-
-        <div className={`${isOpen ? 'block' : 'hidden'} lg:block lg:flex lg:items-center lg:w-auto lg:space-x-8`}>
-          <a
-            href="/home"
-            className="text-gray-700 hover:text-blue-700 transition-colors duration-300"
+        <button
+          onClick={toggleMobileMenu}
+          type="button"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden bg-transparent hover:bg-transparent focus:ring-transparent focus:outline-none transition-transform duration-300 ease-in-out transform"
+          style={{
+            transform: isMobileMenuOpen ? "rotate(90deg)" : "rotate(0deg)",
+          }}
+        >
+          <span className="sr-only">Toggle mobile menu</span>
+          <svg
+            className="w-5 h-5 transition-opacity duration-300 ease-in-out"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
           >
-            Home
-          </a>
-          <a
-            href="/features"
-            className="text-gray-700 hover:text-blue-700 transition-colors duration-300"
-          >
-            Features
-          </a>
-          <a
-            href="/about"
-            className="text-gray-700 hover:text-blue-700 transition-colors duration-300"
-          >
-            About
-          </a>
-          <a
-            href="/contact"
-            className="text-gray-700 hover:text-blue-700 transition-colors duration-300"
-          >
-            Contact
-          </a>
-          <a
-            href="/login"
-            className="text-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 lg:px-5 lg:py-2.5 focus:outline-none"
-          >
-            Log in
-          </a>
-          <a
-            href="/signup"
-            className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 lg:px-5 lg:py-2.5 focus:outline-none"
-          >
-            Get started
-          </a>
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d={
+                isMobileMenuOpen
+                  ? "M6 6L18 18M6 18L18 6"
+                  : "M3 6h18M3 12h18M3 18h18"
+              }
+            />
+          </svg>
+        </button>
+        <div
+          className={`${
+            isMobileMenuOpen
+              ? "max-h-screen opacity-100 transition-max-h duration-300 ease-in-out"
+              : "max-h-0 opacity-0 transition-max-h duration-300 ease-in-out"
+          } w-full md:hidden bg-white`}
+          id="navbar-default"
+        >
+          <div className="flex flex-col justify-center items-center">
+            <ul className="font-medium flex flex-col p-0 py-4 rounded-lg space-y-4">
+              {currentPage === "/features" ? (
+                <>
+                  <li>
+                    <Link
+                      onClick={toggleMobileMenu}
+                      to="/"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="features-1"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Feature 1
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="features-2"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Feature 2
+                    </ScrollLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="hero"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Home
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="features"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Features
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="about"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      About
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="contact"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Contact
+                    </ScrollLink>
+                  </li>
+                </>
+              )}
+            </ul>
+            <div className="flex flex-col space-y-4 items-center py-4">
+              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition">
+                Login
+              </button>
+              <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition">
+                Sign Up
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <div className={`lg:hidden ${isOpen ? 'block' : 'hidden'}`} id="mobile-menu">
-        <ul className="flex flex-col mt-4 space-y-4 px-4 pb-4 border-t border-gray-200">
-          <li>
-            <a
-              href="/home"
-              className="block text-gray-700 hover:text-blue-700 transition-colors duration-300"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="/features"
-              className="block text-gray-700 hover:text-blue-700 transition-colors duration-300"
-            >
-              Features
-            </a>
-          </li>
-          <li>
-            <a
-              href="/about"
-              className="block text-gray-700 hover:text-blue-700 transition-colors duration-300"
-            >
-              About
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contact"
-              className="block text-gray-700 hover:text-blue-700 transition-colors duration-300"
-            >
-              Contact
-            </a>
-          </li>
-          <li>
-            <a
-              href="/login"
-              className="block text-gray-800 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none"
-            >
-              Log in
-            </a>
-          </li>
-          <li>
-            <a
-              href="/signup"
-              className="block text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none"
-            >
-              Get started
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
-}
+};
 
 export default Navbar;
