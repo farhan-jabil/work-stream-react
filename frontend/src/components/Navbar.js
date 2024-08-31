@@ -11,7 +11,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const scrollThreshold = 20;
+      const scrollThreshold = 100;
 
       if (scrollPosition > scrollThreshold && !isSticky) {
         setIsSticky(true);
@@ -39,8 +39,8 @@ const Navbar = () => {
     <div
       className={`${
         isSticky
-          ? "fixed top-0 left-0 right-0 bg-white shadow-lg text-[#12123E] border-gray-200 dark:bg-gray-900"
-          : "bg-white text-[#12123E] border-gray-200 dark:bg-gray-900"
+          ? "fixed top-0 left-0 right-0 bg-white bg-opacity-30 backdrop-blur-lg shadow-lg text-[#12123E] border-gray-200 dark:bg-gray-900"
+          : "bg-gradient-to-r from-blue-100 via-blue-50 to-green-100 text-[#12123E] border-gray-200 dark:bg-gray-900"
       } ${isSticky ? "p-1" : ""} transition-all duration-2000`}
       style={{ zIndex: 1000 }}
     >

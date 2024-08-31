@@ -3,7 +3,7 @@ import React from 'react'
 const Features = () => {
   return (
     <div>
-      This is features
+      This is features page
     </div>
   )
 }
