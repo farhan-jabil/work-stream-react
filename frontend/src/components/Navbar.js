@@ -124,6 +124,39 @@ const Navbar = () => {
               </li>
               <li>
                 <ScrollLink
+                  to="pricing"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Pricing
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="testimonial"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Testimonial
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="faq"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  FAQ
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
                   to="contact"
                   smooth={true}
                   duration={500}
@@ -263,6 +296,42 @@ const Navbar = () => {
                   <li>
                     <ScrollLink
                       onClick={toggleMobileMenu}
+                      to="pricing"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Pricing
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="testimonial"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Testimonial
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="faq"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      FAQ
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
                       to="contact"
                       smooth={true}
                       duration={500}
@@ -275,14 +344,14 @@ const Navbar = () => {
                 </>
               )}
             </ul>
-            <div className="flex flex-col space-y-4 items-center py-4">
-              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition">
-                Login
-              </button>
-              <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition">
-                Sign Up
-              </button>
-            </div>
+          </div>
+          <div className="flex flex-col justify-center items-center py-4">
+            <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition mb-2">
+              Login
+            </button>
+            <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition">
+              Sign Up
+            </button>
           </div>
         </div>
       </nav>
