@@ -16,6 +16,15 @@ const Home = () => {
       <div id="about">
         <About></About>
       </div>
+      <div id="pricing" className="py-48">
+        Pricing
+      </div>
+      <div id="testimonial" className="py-48">
+        Testimonial
+      </div>
+      <div id="faq" className="py-48">
+        FAQ
+      </div>
       <div id="contact" className="py-48">
         Contact
       </div>
