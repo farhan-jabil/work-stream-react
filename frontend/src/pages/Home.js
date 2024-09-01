@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
 import Features from "../components/FeaturesSection";
 import About from "../components/About";
+import Pricing from "../components/Pricing";
 
 const Home = () => {
   return (
@@ -16,8 +17,8 @@ const Home = () => {
       <div id="about">
         <About></About>
       </div>
-      <div id="pricing" className="py-48">
-        Pricing
+      <div id="pricing">
+        <Pricing></Pricing>
       </div>
       <div id="testimonial" className="py-48">
         Testimonial
