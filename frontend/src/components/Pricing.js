@@ -4,7 +4,7 @@ import { MdCheckCircle } from "react-icons/md";
 const Pricing = () => {
   return (
     <section id="pricing" className="bg-white py-32">
-      <div className="container mx-auto px-6 text-center">
+      <div className="container max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800 text-center">
           Our Pricing
         </h2>

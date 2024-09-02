@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const FeatureSection = () => {
   return (
     <div className="features py-32">
-      <div className="max-w-6xl mx-auto px-6 text-center">
+      <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800">
           Key Features
         </h2>
