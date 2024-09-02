@@ -4,6 +4,7 @@ import Features from "../components/FeaturesSection";
 import About from "../components/About";
 import Pricing from "../components/Pricing";
 import Testimonial from "../components/Testimonial";
+import FAQ from "../components/FAQ";
 
 const Home = () => {
   return (
@@ -23,8 +24,8 @@ const Home = () => {
       <div id="testimonial">
         <Testimonial></Testimonial>
       </div>
-      <div id="faq" className="py-48">
-        FAQ
+      <div id="faq">
+        <FAQ></FAQ>
       </div>
       <div id="contact" className="py-48">
         Contact
