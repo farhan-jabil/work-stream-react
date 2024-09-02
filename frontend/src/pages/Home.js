@@ -5,6 +5,7 @@ import About from "../components/About";
 import Pricing from "../components/Pricing";
 import Testimonial from "../components/Testimonial";
 import FAQ from "../components/FAQ";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -27,8 +28,8 @@ const Home = () => {
       <div id="faq">
         <FAQ></FAQ>
       </div>
-      <div id="contact" className="py-48">
-        Contact
+      <div id="contact">
+        <Footer></Footer>
       </div>
     </>
   );

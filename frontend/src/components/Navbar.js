@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { Link, useLocation } from "react-router-dom";
+import { images } from "../utils/images";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -46,9 +47,7 @@ const Navbar = () => {
     >
       <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-4">
         <a href="/" className="flex items-center p-4 lg:p-0">
-          <span className="self-center lg:text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Leave Management
-          </span>
+          <img src={images.logo} alt="Flexi Leave Logo" className="h-20 mr-2 rounded-xl" />
         </a>
         <ul className="font-medium hidden md:flex p-0 space-x-8">
           {currentPage === "/features" ? (
@@ -344,14 +343,14 @@ const Navbar = () => {
                 </>
               )}
             </ul>
-          </div>
-          <div className="flex flex-col justify-center items-center py-4">
-            <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition mb-2">
-              Login
-            </button>
-            <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition">
-              Sign Up
-            </button>
+            <div className="flex flex-col items-center space-y-4 py-4">
+              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition">
+                Login
+              </button>
+              <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition">
+                Sign Up
+              </button>
+            </div>
           </div>
         </div>
       </nav>
