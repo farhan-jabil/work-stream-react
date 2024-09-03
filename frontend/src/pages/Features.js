@@ -1,9 +1,10 @@
 import React from 'react'
+import Overview from '../components/features/Overview'
 
 const Features = () => {
   return (
-    <div>
-      This is features page
+    <div id='overview'>
+      <Overview></Overview>
     </div>
   )
 }

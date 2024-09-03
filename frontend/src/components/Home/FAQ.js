@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import faqItems from "../utils/faqItems";
+import faqItems from "../../utils/faqItems";
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);

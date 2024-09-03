@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaBullseye, FaLightbulb, FaHandshake, FaCertificate } from "react-icons/fa";
-import Counter from "../utils/Counter";
+import Counter from "../../utils/Counter";
 
 const About = () => {
   const [isCounting, setIsCounting] = useState(false);

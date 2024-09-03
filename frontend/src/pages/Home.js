@@ -1,11 +1,11 @@
 import React from "react";
-import Hero from "../components/Hero";
-import Features from "../components/FeaturesSection";
-import About from "../components/About";
-import Pricing from "../components/Pricing";
-import Testimonial from "../components/Testimonial";
-import FAQ from "../components/FAQ";
-import Footer from "../components/Footer";
+import Hero from "../components/Home/Hero";
+import Features from "../components/Home/FeaturesSection";
+import About from "../components/Home/About";
+import Pricing from "../components/Home/Pricing";
+import Testimonial from "../components/Home/Testimonial";
+import FAQ from "../components/Home/FAQ";
+import Footer from "../components/footer/Footer";
 
 const Home = () => {
   return (
@@ -27,9 +27,6 @@ const Home = () => {
       </div>
       <div id="faq">
         <FAQ></FAQ>
-      </div>
-      <div id="contact">
-        <Footer></Footer>
       </div>
     </>
   );

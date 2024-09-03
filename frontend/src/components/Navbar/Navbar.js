@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { Link, useLocation } from "react-router-dom";
-import { images } from "../utils/images";
+import { images } from "../../utils/images";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -12,7 +12,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const scrollThreshold = 100;
+      const scrollThreshold = 50;
 
       if (scrollPosition > scrollThreshold && !isSticky) {
         setIsSticky(true);
@@ -47,7 +47,11 @@ const Navbar = () => {
     >
       <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-4">
         <a href="/" className="flex items-center p-4 lg:p-0">
-          <img src={images.logo} alt="Flexi Leave Logo" className="h-20 mr-2 rounded-xl" />
+          <img
+            src={images.logo}
+            alt="Flexi Leave Logo"
+            className="h-16 mr-2 rounded-xl"
+          />
         </a>
         <ul className="font-medium hidden md:flex p-0 space-x-8">
           {currentPage === "/features" ? (
@@ -55,8 +59,6 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/"
-                  smooth={true}
-                  duration={500}
                   className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
                   activeClass="active"
                 >
@@ -65,24 +67,68 @@ const Navbar = () => {
               </li>
               <li>
                 <ScrollLink
-                  to="features-1"
+                  to="overview"
                   smooth={true}
                   duration={500}
                   className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
                   activeClass="active"
                 >
-                  Feature 1
+                  Overview
                 </ScrollLink>
               </li>
               <li>
                 <ScrollLink
-                  to="features-2"
+                  to="use-case"
                   smooth={true}
                   duration={500}
                   className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
                   activeClass="active"
                 >
-                  Feature 2
+                  Use Cases
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="integration"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Integration
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="customization"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Customization
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="user-feedback"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  User Feedback
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="support"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Support
                 </ScrollLink>
               </li>
             </>
@@ -169,11 +215,23 @@ const Navbar = () => {
           )}
         </ul>
         <div className="hidden md:flex space-x-4 items-center">
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition">
-            Login
+          <button
+            type="button"
+            className="relative overflow-hidden text-white bg-gradient-to-r from-blue-500 to-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
+            <span className="relative z-10 flex items-center justify-center">
+              Login
+            </span>
           </button>
-          <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition">
-            Sign Up
+          <button
+            type="button"
+            className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-800 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
+            <span className="relative z-10 flex items-center justify-center">
+              Sign Up
+            </span>
           </button>
         </div>
         <button
@@ -210,19 +268,16 @@ const Navbar = () => {
             isMobileMenuOpen
               ? "max-h-screen opacity-100 transition-max-h duration-300 ease-in-out"
               : "max-h-0 opacity-0 transition-max-h duration-300 ease-in-out"
-          } w-full md:hidden bg-white`}
+          } w-full md:hidden bg-white bg-opacity-30 backdrop-blur-lg`}
           id="navbar-default"
         >
           <div className="flex flex-col justify-center items-center">
-            <ul className="font-medium flex flex-col p-0 py-4 rounded-lg space-y-4">
+            <ul className="font-medium flex flex-col p-0 py-4 rounded-lg space-y-4 text-center">
               {currentPage === "/features" ? (
                 <>
                   <li>
                     <Link
-                      onClick={toggleMobileMenu}
                       to="/"
-                      smooth={true}
-                      duration={500}
                       className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
                       activeClass="active"
                     >
@@ -231,26 +286,68 @@ const Navbar = () => {
                   </li>
                   <li>
                     <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="features-1"
+                      to="overview"
                       smooth={true}
                       duration={500}
                       className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
                       activeClass="active"
                     >
-                      Feature 1
+                      Overview
                     </ScrollLink>
                   </li>
                   <li>
                     <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="features-2"
+                      to="use-case"
                       smooth={true}
                       duration={500}
                       className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
                       activeClass="active"
                     >
-                      Feature 2
+                      Use Cases
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      to="integration"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Integration
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      to="customization"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Customization
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      to="user-feedback"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      User Feedback
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      to="support"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Support
                     </ScrollLink>
                   </li>
                 </>
@@ -344,11 +441,23 @@ const Navbar = () => {
               )}
             </ul>
             <div className="flex flex-col items-center space-y-4 py-4">
-              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition">
-                Login
+              <button
+                type="button"
+                className="relative overflow-hidden text-white bg-gradient-to-r from-blue-500 to-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
+                <span className="relative z-10 flex items-center justify-center">
+                  Login
+                </span>
               </button>
-              <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition">
-                Sign Up
+              <button
+                type="button"
+                className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-800 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
+                <span className="relative z-10 flex items-center justify-center">
+                  Sign Up
+                </span>
               </button>
             </div>
           </div>
