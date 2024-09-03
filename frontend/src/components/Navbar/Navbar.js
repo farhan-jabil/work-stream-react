@@ -57,15 +57,6 @@ const Navbar = () => {
           {currentPage === "/features" ? (
             <>
               <li>
-                <Link
-                  to="/"
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
                 <ScrollLink
                   to="overview"
                   smooth={true}
@@ -129,6 +120,17 @@ const Navbar = () => {
                   activeClass="active"
                 >
                   Support
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  to="contact"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Contact
                 </ScrollLink>
               </li>
             </>
@@ -214,25 +216,18 @@ const Navbar = () => {
             </>
           )}
         </ul>
-        <div className="hidden md:flex space-x-4 items-center">
-          <button
-            type="button"
-            className="relative overflow-hidden text-white bg-gradient-to-r from-blue-500 to-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
-            <span className="relative z-10 flex items-center justify-center">
-              Login
-            </span>
-          </button>
-          <button
-            type="button"
-            className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-800 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
-            <span className="relative z-10 flex items-center justify-center">
-              Sign Up
-            </span>
-          </button>
+        <div className="hidden md:flex">
+          <Link to="/features">
+            <button
+              type="button"
+              className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-blue-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
+              <span className="relative z-10 flex items-center justify-center">
+                Login Or Signup
+              </span>
+            </button>
+          </Link>
         </div>
         <button
           onClick={toggleMobileMenu}
@@ -275,15 +270,6 @@ const Navbar = () => {
             <ul className="font-medium flex flex-col p-0 py-4 rounded-lg space-y-4 text-center">
               {currentPage === "/features" ? (
                 <>
-                  <li>
-                    <Link
-                      to="/"
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Home
-                    </Link>
-                  </li>
                   <li>
                     <ScrollLink
                       to="overview"
@@ -348,6 +334,18 @@ const Navbar = () => {
                       activeClass="active"
                     >
                       Support
+                    </ScrollLink>
+                  </li>
+                  <li>
+                    <ScrollLink
+                      onClick={toggleMobileMenu}
+                      to="contact"
+                      smooth={true}
+                      duration={500}
+                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                      activeClass="active"
+                    >
+                      Contact
                     </ScrollLink>
                   </li>
                 </>
@@ -440,26 +438,17 @@ const Navbar = () => {
                 </>
               )}
             </ul>
-            <div className="flex flex-col items-center space-y-4 py-4">
+            <Link to="/features">
               <button
                 type="button"
-                className="relative overflow-hidden text-white bg-gradient-to-r from-blue-500 to-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
+                className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-blue-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
                 <span className="relative z-10 flex items-center justify-center">
-                  Login
+                  Login Or SignUp
                 </span>
               </button>
-              <button
-                type="button"
-                className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-800 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
-                <span className="relative z-10 flex items-center justify-center">
-                  Sign Up
-                </span>
-              </button>
-            </div>
+            </Link>
           </div>
         </div>
       </nav>

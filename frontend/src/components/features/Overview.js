@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheckCircle, FaChartBar, FaCogs, FaUserCheck, FaClipboardList } from "react-icons/fa";
+import { FaCheckCircle, FaChartBar, FaCogs, FaUserCheck, FaClipboardList, FaBell } from "react-icons/fa";
 
 const Overview = () => {
   return (
@@ -53,6 +53,13 @@ const Overview = () => {
               <div>
                 <strong className="font-medium text-gray-900">User-Friendly Interface:</strong> 
                 <p>The system is designed with ease of use in mind, making it accessible for all employees regardless of technical proficiency.</p>
+              </div>
+            </li>
+            <li className="flex items-start space-x-3">
+              <FaBell className="text-red-600 text-2xl mt-1" />
+              <div>
+                <strong className="font-medium text-gray-900">Notifications & Alerts:</strong> 
+                <p>Receive timely notifications and alerts for upcoming leave requests, approvals, and system updates to stay informed and responsive.</p>
               </div>
             </li>
           </ul>

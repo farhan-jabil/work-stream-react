@@ -1,11 +1,11 @@
 import React from "react";
-import Hero from "../components/Home/Hero";
-import Features from "../components/Home/FeaturesSection";
-import About from "../components/Home/About";
-import Pricing from "../components/Home/Pricing";
-import Testimonial from "../components/Home/Testimonial";
-import FAQ from "../components/Home/FAQ";
-import Footer from "../components/footer/Footer";
+import Hero from "../../components/Home/Hero";
+import Features from "../../components/Home/FeaturesSection";
+import About from "../../components/Home/About";
+import Pricing from "../../components/Home/Pricing";
+import Testimonial from "../../components/Home/Testimonial";
+import FAQ from "../../components/Home/FAQ";
+import Footer from "../../components/footer/Footer";
 
 const Home = () => {
   return (

@@ -2,9 +2,9 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import testimonials from "../../utils/testimonialItems";
+import feedbacks from "../../utils/feedbacks";
 
-const Testimonial = () => {
+const UserFeedback = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -32,27 +32,29 @@ const Testimonial = () => {
   return (
     <section className="py-32 bg-gradient-to-r from-blue-100 via-blue-50 to-green-100">
       <div className="container max-w-7xl mx-auto px-6 text-center">
-      <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800 text-center">
-          Testimonial
+        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800">
+          User Feedback
         </h2>
         <p className="text-lg md:text-xl mb-12 text-gray-600">
-        Discover How We've Made a Difference.
+          Here's what our users are saying about Flexi Leave.
         </p>
         <Slider {...settings} className="relative">
-          {testimonials.map((testimonial, index) => (
+          {feedbacks.map((feedback, index) => (
             <div key={index} className="px-4 h-full">
               <div className="bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 text-white rounded-lg shadow-lg p-8 mb-8 flex flex-col justify-between h-full min-h-[350px]">
                 <div className="flex justify-center mb-4">
                   <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
+                    src={feedback.avatar}
+                    alt={feedback.name}
                     className="w-24 h-24 rounded-full border-4 border-white"
                   />
                 </div>
-                <p className="text-lg mb-4">"{testimonial.feedback}"</p>
+                <p className="text-lg mb-4 line-clamp-3">
+                  "{feedback.feedback}"
+                </p>
                 <div className="mt-auto">
-                  <h4 className="text-xl font-bold">{testimonial.name}</h4>
-                  <p className="text-sm">{testimonial.title}</p>
+                  <h4 className="text-xl font-bold">{feedback.name}</h4>
+                  <p className="text-sm">{feedback.title}</p>
                 </div>
               </div>
             </div>
@@ -63,4 +65,4 @@ const Testimonial = () => {
   );
 };
 
-export default Testimonial;
+export default UserFeedback;
