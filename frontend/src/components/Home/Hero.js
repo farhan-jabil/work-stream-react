@@ -32,10 +32,10 @@ const Hero = () => {
             intuitive system.
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <button className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white font-semibold rounded-lg transition">
+            <button className="px-8 py-4 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-semibold rounded-lg transition-transform transform hover:scale-105">
               Get Started
             </button>
-            <button className="px-8 py-4 bg-gray-700 hover:bg-gray-800 text-white font-semibold rounded-lg transition">
+            <button className="px-8 py-4 bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-gray-300 text-white font-semibold rounded-lg transition-transform transform hover:scale-105">
               Watch Demo
             </button>
           </div>
