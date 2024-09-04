@@ -217,14 +217,14 @@ const Navbar = () => {
           )}
         </ul>
         <div className="hidden md:flex">
-          <Link to="/signInUp">
+          <Link to="/login">
             <button
               type="button"
               className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-blue-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
               <span className="relative z-10 flex items-center justify-center">
-                Login Or Signup
+                Login
               </span>
             </button>
           </Link>
@@ -438,14 +438,14 @@ const Navbar = () => {
                 </>
               )}
             </ul>
-            <Link to="/signInUp">
+            <Link to="/login">
               <button
                 type="button"
                 className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-blue-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out"></span>
                 <span className="relative z-10 flex items-center justify-center">
-                  Login Or SignUp
+                  Login
                 </span>
               </button>
             </Link>

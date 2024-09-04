@@ -27,19 +27,23 @@ const Login = () => {
               />
             </div>
             <div className="mb-5">
-              <label className="block text-gray-700 mb-2 text-lg">Password</label>
+              <label className="block text-gray-700 mb-2 text-lg">
+                Password
+              </label>
               <input
                 type="password"
                 className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300"
                 placeholder="Enter your password"
               />
             </div>
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white py-3 rounded-lg font-semibold shadow-lg transform transition duration-500 hover:scale-105"
-            >
-              Login
-            </button>
+            <Link to="/admin/dashboard">
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white py-3 rounded-lg font-semibold shadow-lg transform transition duration-500 hover:scale-105"
+              >
+                Login
+              </button>
+            </Link>
           </form>
           <div className="text-center mt-6">
             <Link

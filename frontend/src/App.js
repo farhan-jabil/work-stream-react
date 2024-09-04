@@ -5,6 +5,9 @@ import Home from "./pages/landing/Home";
 import Features from "./pages/landing/Features";
 import Footer from "./components/footer/Footer";
 import Login from "./pages/Login/Login";
+import AdminDashboard from "./pages/dashboard/admin/AdminDashboard";
+import AdminLayout from "./layout/AdminLayout";
+import AdminOverview from "./pages/dashboard/admin/AdminOverview";
 
 function App() {
   return (
@@ -15,9 +18,9 @@ function App() {
             path="/"
             element={
               <>
-                <Navbar/>
-                <Home/>
-                <Footer/>
+                <Navbar />
+                <Home />
+                <Footer />
               </>
             }
           />
@@ -25,17 +28,67 @@ function App() {
             path="/features"
             element={
               <>
-                <Navbar/>
-                <Features/>
-                <Footer/>
+                <Navbar />
+                <Features />
+                <Footer />
               </>
             }
           />
           <Route
-            path="/signInUp"
+            path="/login"
             element={
               <>
-                <Login/>
+                <Login />
+              </>
+            }
+          />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <>
+                <AdminLayout>
+                  <AdminDashboard />
+                </AdminLayout>
+              </>
+            }
+          />
+          <Route
+            path="/admin/overview"
+            element={
+              <>
+                <AdminLayout>
+                  <AdminOverview />
+                </AdminLayout>
+              </>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <>
+                <AdminLayout>
+                  <AdminDashboard />
+                </AdminLayout>
+              </>
+            }
+          />
+          <Route
+            path="/admin/requests"
+            element={
+              <>
+                <AdminLayout>
+                  <AdminDashboard />
+                </AdminLayout>
+              </>
+            }
+          />
+          <Route
+            path="/admin/settings"
+            element={
+              <>
+                <AdminLayout>
+                  <AdminDashboard />
+                </AdminLayout>
               </>
             }
           />
