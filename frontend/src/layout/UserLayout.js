@@ -9,15 +9,18 @@ import {
   FaCog,
   FaTachometerAlt,
 } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { images } from "../utils/images";
 
-const AdminLayout = ({ children }) => {
+const UserLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
-
+  const location = useLocation();
+  
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  const isAdmin = location.pathname.startsWith("/admin");
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -50,12 +53,10 @@ const AdminLayout = ({ children }) => {
           <ul className="space-y-6 px-4">
             <li>
               <NavLink
-                to="/admin/dashboard"
+                to={isAdmin ? "/admin/dashboard" : "/employee/dashboard"}
                 className={({ isActive }) =>
                   `flex items-center p-3 rounded-lg ${
-                    isActive
-                      ? "bg-blue-800 text-white"
-                      : "hover:bg-blue-700"
+                    isActive ? "bg-blue-700" : "hover:bg-blue-800"
                   } transition`
                 }
               >
@@ -65,65 +66,64 @@ const AdminLayout = ({ children }) => {
                 </span>
               </NavLink>
             </li>
+            {isAdmin ? (
+              <>
+                <li>
+                  <NavLink
+                    to="/admin/users"
+                    className={({ isActive }) =>
+                      `flex items-center p-3 rounded-lg ${
+                        isActive ? "bg-blue-700" : "hover:bg-blue-800"
+                      } transition`
+                    }
+                  >
+                    <FaUsers className="text-lg" />
+                    <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                      Manage Employees
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/admin/leave-requests"
+                    className={({ isActive }) =>
+                      `flex items-center p-3 rounded-lg ${
+                        isActive ? "bg-blue-700" : "hover:bg-blue-800"
+                      } transition`
+                    }
+                  >
+                    <FaClipboard className="text-lg" />
+                    <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                      Leave Requests
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <NavLink
+                    to="/employee/request-leave"
+                    className={({ isActive }) =>
+                      `flex items-center p-3 rounded-lg ${
+                        isActive ? "bg-blue-700" : "hover:bg-blue-800"
+                      } transition`
+                    }
+                  >
+                    <FaClipboard className="text-lg" />
+                    <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                      Request Leave
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
             <li>
               <NavLink
-                to="/admin/overview"
+                to={isAdmin ? "/admin/settings" : "/employee/settings"}
                 className={({ isActive }) =>
                   `flex items-center p-3 rounded-lg ${
-                    isActive
-                      ? "bg-blue-800 text-white"
-                      : "hover:bg-blue-700"
-                  } transition`
-                }
-              >
-                <FaChartBar className="text-lg" />
-                <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                  Overview
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/admin/users"
-                className={({ isActive }) =>
-                  `flex items-center p-3 rounded-lg ${
-                    isActive
-                      ? "bg-blue-800 text-white"
-                      : "hover:bg-blue-700"
-                  } transition`
-                }
-              >
-                <FaUsers className="text-lg" />
-                <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                  Manage Employees
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/admin/requests"
-                className={({ isActive }) =>
-                  `flex items-center p-3 rounded-lg ${
-                    isActive
-                      ? "bg-blue-800 text-white"
-                      : "hover:bg-blue-700"
-                  } transition`
-                }
-              >
-                <FaClipboard className="text-lg" />
-                <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                  Leave Requests
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/admin/settings"
-                className={({ isActive }) =>
-                  `flex items-center p-3 rounded-lg ${
-                    isActive
-                      ? "bg-blue-800 text-white"
-                      : "hover:bg-blue-800"
+                    isActive ? "bg-blue-700" : "hover:bg-blue-800"
                   } transition`
                 }
               >
@@ -139,11 +139,11 @@ const AdminLayout = ({ children }) => {
 
       <div className="flex-1 flex flex-col">
         <nav className="flex items-center justify-between py-4 px-10 bg-blue-900 text-white shadow">
-          <h1 className="text-2xl font-semibold">Dashboard</h1>
+          <h1 className="text-2xl font-semibold">{isAdmin ? "Admin" : "Employee"} Dashboard</h1>
           <div className="flex items-center space-x-5">
             Hi,
             <NavLink
-              to="/admin/profile"
+              to={isAdmin ? "/admin/profile" : "/employee/profile"}
               className="flex items-center ml-2 space-x-4 hover:text-gray-200 transition"
             >
               <span className="font-semibold">Farhan Hassan Jabil</span>
@@ -163,4 +163,4 @@ const AdminLayout = ({ children }) => {
   );
 };
 
-export default AdminLayout;
+export default UserLayout;

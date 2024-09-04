@@ -6,8 +6,12 @@ import Features from "./pages/landing/Features";
 import Footer from "./components/footer/Footer";
 import Login from "./pages/Login/Login";
 import AdminDashboard from "./pages/dashboard/admin/AdminDashboard";
-import AdminLayout from "./layout/AdminLayout";
-import AdminOverview from "./pages/dashboard/admin/AdminOverview";
+import UserLayout from "./layout/UserLayout";
+import EmployeeManagement from "./pages/dashboard/admin/EmloyeeManagement";
+import EmployeeForm from "./pages/dashboard/admin/EmployeeForm";
+import LeaveRequests from "./pages/dashboard/admin/LeaveRequests";
+import EmployeeDashboard from "./pages/dashboard/employee/EmployeeDashboard";
+import RequestLeave from "./pages/dashboard/employee/RequestLeave";
 
 function App() {
   return (
@@ -36,60 +40,76 @@ function App() {
           />
           <Route
             path="/login"
-            element={
-              <>
-                <Login />
-              </>
-            }
+            element={<Login />}
           />
           <Route
             path="/admin/dashboard"
             element={
-              <>
-                <AdminLayout>
-                  <AdminDashboard />
-                </AdminLayout>
-              </>
-            }
-          />
-          <Route
-            path="/admin/overview"
-            element={
-              <>
-                <AdminLayout>
-                  <AdminOverview />
-                </AdminLayout>
-              </>
+              <UserLayout>
+                <AdminDashboard />
+              </UserLayout>
             }
           />
           <Route
             path="/admin/users"
             element={
-              <>
-                <AdminLayout>
-                  <AdminDashboard />
-                </AdminLayout>
-              </>
+              <UserLayout>
+                <EmployeeManagement />
+              </UserLayout>
             }
           />
           <Route
-            path="/admin/requests"
+            path="/admin/users/add"
             element={
-              <>
-                <AdminLayout>
-                  <AdminDashboard />
-                </AdminLayout>
-              </>
+              <UserLayout>
+                <EmployeeForm />
+              </UserLayout>
+            }
+          />
+          <Route
+            path="/admin/users/edit/:id"
+            element={
+              <UserLayout>
+                <EmployeeForm />
+              </UserLayout>
+            }
+          />
+          <Route
+            path="/admin/leave-requests"
+            element={
+              <UserLayout>
+                <LeaveRequests />
+              </UserLayout>
             }
           />
           <Route
             path="/admin/settings"
             element={
-              <>
-                <AdminLayout>
-                  <AdminDashboard />
-                </AdminLayout>
-              </>
+              <UserLayout>
+              </UserLayout>
+            }
+          />
+          <Route
+            path="/employee/dashboard"
+            element={
+              <UserLayout>
+                <EmployeeDashboard/>
+              </UserLayout>
+            }
+          />
+          <Route
+            path="/employee/request-leave"
+            element={
+              <UserLayout>
+                <RequestLeave/>
+              </UserLayout>
+            }
+          />
+          <Route
+            path="/employee/settings"
+            element={
+              <UserLayout>
+              </UserLayout>
             }
           />
         </Routes>
