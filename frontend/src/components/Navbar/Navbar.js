@@ -46,13 +46,13 @@ const Navbar = () => {
       style={{ zIndex: 1000 }}
     >
       <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-4">
-        <a href="/" className="flex items-center p-4 lg:p-0">
+        <Link to="/" className="flex items-center p-4 lg:p-0">
           <img
             src={images.logo}
             alt="Flexi Leave Logo"
             className="h-16 mr-2 rounded-xl"
           />
-        </a>
+        </Link>
         <ul className="font-medium hidden md:flex p-0 space-x-8">
           {currentPage === "/features" ? (
             <>
@@ -217,7 +217,7 @@ const Navbar = () => {
           )}
         </ul>
         <div className="hidden md:flex">
-          <Link to="/features">
+          <Link to="/signInUp">
             <button
               type="button"
               className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-blue-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"
@@ -438,7 +438,7 @@ const Navbar = () => {
                 </>
               )}
             </ul>
-            <Link to="/features">
+            <Link to="/signInUp">
               <button
                 type="button"
                 className="relative overflow-hidden text-white bg-gradient-to-r from-green-500 to-blue-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-2 transition-transform duration-500 ease-in-out group"

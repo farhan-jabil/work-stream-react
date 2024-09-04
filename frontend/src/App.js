@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/landing/Home";
 import Features from "./pages/landing/Features";
 import Footer from "./components/footer/Footer";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
                 <Footer/>
               </>
             }
-          ></Route>
+          />
           <Route
             path="/features"
             element={
@@ -29,7 +30,15 @@ function App() {
                 <Footer/>
               </>
             }
-          ></Route>
+          />
+          <Route
+            path="/signInUp"
+            element={
+              <>
+                <Login/>
+              </>
+            }
+          />
         </Routes>
       </Router>
     </div>
