@@ -20,6 +20,7 @@ connectDB();
 app.use(express.json());
 
 app.use("/admin/employee-manage", employeeManagementRoute);
+app.use("/employee/request-leave", employeeManagementRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
