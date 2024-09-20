@@ -1,0 +1,24 @@
+{
+  "name": "app-triangle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd frontend && yarn start",
+    "backend": "cd backend && nodemon index.js",
+    "both": "concurrently \"yarn frontend\" \"yarn backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farhan-jabil/app-triangle-task.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farhan-jabil/app-triangle-task/issues"
+  },
+  "homepage": "https://github.com/farhan-jabil/app-triangle-task#readme",
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
