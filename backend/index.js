@@ -4,6 +4,8 @@ const port = 5000;
 const mongoose = require("mongoose");
 const cors = require("cors");
 const employeeManagementRoute = require("./routes/admin/empManageRoute");
+const requestLeaveRoute = require("./routes/employee/requestLeave");
+const userRoute = require("./routes/userRoute");
 
 app.use(cors());
 
@@ -20,7 +22,8 @@ connectDB();
 app.use(express.json());
 
 app.use("/admin/employee-manage", employeeManagementRoute);
-app.use("/employee/request-leave", employeeManagementRoute);
+app.use("/employee/request-leave", requestLeaveRoute);
+app.use("/user", userRoute)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
