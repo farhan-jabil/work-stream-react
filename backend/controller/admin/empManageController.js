@@ -2,18 +2,32 @@ const Employee = require("../../models/admin/empManageModel");
 
 exports.add = async (req, res, next) => {
   try {
-    const data = req.body;
+    const adminUserName = req.user.userName;
+
+    const data = {
+      ...req.body,
+      adminUserName: adminUserName,
+    };
+
     let employee = new Employee(data);
     await employee.save();
+
     res.status(200).json({
-      message: "Employee Added Successfully",
+      message: "Employee added successfully",
+      employee: employee,
     });
   } catch (error) {
-    if (!error.statusCode) { 
-      error.statusCode = 500;  
-      error.message = "Something went wrong!";
-    } 
-    next(error);
+    if (error.code === 11000) {
+      const field = Object.keys(error.keyValue)[0];
+      res.status(400).json({
+        message: `Duplicate value error: ${field} already exists.`,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong!",
+        error: error.message,
+      });
+    }
   }
 };
 

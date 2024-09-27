@@ -3,9 +3,11 @@ const app = express();
 const port = 5000;
 const mongoose = require("mongoose");
 const cors = require("cors");
+const authMiddleware = require("./middleware/authMiddleware");
 const employeeManagementRoute = require("./routes/admin/empManageRoute");
 const requestLeaveRoute = require("./routes/employee/requestLeave");
 const userRoute = require("./routes/userRoute");
+const infoRoute = require("./routes/infoRoute");
 
 app.use(cors());
 
@@ -21,9 +23,10 @@ connectDB();
 
 app.use(express.json());
 
-app.use("/admin/employee-manage", employeeManagementRoute);
+app.use("/admin/employee-manage", authMiddleware, employeeManagementRoute);
 app.use("/employee/request-leave", requestLeaveRoute);
-app.use("/user", userRoute)
+app.use("/user", userRoute);
+app.use("/user", authMiddleware ,infoRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
