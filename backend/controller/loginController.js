@@ -1,4 +1,5 @@
 const User = require("../models/admin/signUpModel");
+const Employee = require("../models/admin/empManageModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
@@ -14,7 +15,17 @@ exports.login = async (req, res, next) => {
   const { userName, password } = req.body;
 
   try {
-    const user = await User.findOne({ userName });
+    let user;
+    let role;
+
+    if (await User.findOne({ userName })) {
+      user = await User.findOne({ userName });
+      role = "admin";
+    } else {
+      user = await Employee.findOne({ userName });
+      role = "employee";
+    }
+
     if (!user) {
       return res.status(401).json({ message: "User not found" });
     }
@@ -24,11 +35,14 @@ exports.login = async (req, res, next) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ id: user._id , userName: user.userName }, jwtSecret);
+    const token = jwt.sign(
+      { id: user._id, userName: user.userName, role },
+      jwtSecret
+    );
 
-    res.status(200).json({ 
-      message: "Login successful", 
-      token 
+    res.status(200).json({
+      message: "Login successful",
+      token,
     });
   } catch (error) {
     next(error);

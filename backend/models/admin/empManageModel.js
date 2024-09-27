@@ -6,7 +6,7 @@ const schema = new Schema({
     type: String,
     required: true
   },
-  username: {
+  userName: {
     type: String,
     required: true,
     unique: true
@@ -21,7 +21,15 @@ const schema = new Schema({
     required: true,
     unique: true
   },
+  password: {
+    type: String,
+    required: true
+  },
   role: {
+    type: String,
+    default: "employee",
+  },
+  designation: {
     type: String,
     required: true
   },

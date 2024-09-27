@@ -1,12 +1,15 @@
+const bcrypt = require("bcryptjs");
 const Employee = require("../../models/admin/empManageModel");
 
 exports.add = async (req, res, next) => {
   try {
     const adminUserName = req.user.userName;
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const data = {
       ...req.body,
       adminUserName: adminUserName,
+      password: hashedPassword,
     };
 
     let employee = new Employee(data);
@@ -35,8 +38,8 @@ exports.getAll = async (req, res, next) => {
   try {
     const data = await Employee.find();
     res.status(200).json({
-      message: "Get all employee",
-      employee: data,
+      message: "Get all employees",
+      employees: data,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -68,7 +71,7 @@ exports.edit = async (req, res, next) => {
     const data = req.body;
     await Employee.updateOne({ _id: req.params.id }, { $set: data });
     res.status(200).json({
-      message: "Employee edit Successfully",
+      message: "Employee edited successfully",
       employee: data,
     });
   } catch (error) {
