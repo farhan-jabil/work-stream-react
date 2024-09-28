@@ -24,7 +24,7 @@ connectDB();
 app.use(express.json());
 
 app.use("/admin/employee-manage", authMiddleware, employeeManagementRoute);
-app.use("/employee/request-leave", requestLeaveRoute);
+app.use("/employee/request-leave", authMiddleware ,requestLeaveRoute);
 app.use("/user", userRoute);
 app.use("/user", authMiddleware ,infoRoute);
 

@@ -10,7 +10,7 @@ const authMiddleware = (req, res, next) => {
   }
   try {
     const data = jwt.verify(token, jwtSecret);
-    req.user = data;
+    req.user = data;  // Data now has role too
     next();
   } catch (error) {
     res.status(400).json({ message: "Invalid token" });

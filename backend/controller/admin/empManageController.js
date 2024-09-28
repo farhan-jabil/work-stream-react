@@ -36,7 +36,9 @@ exports.add = async (req, res, next) => {
 
 exports.getAll = async (req, res, next) => {
   try {
-    const data = await Employee.find();
+    const adminUserName = req.user.userName;
+    const data = await Employee.find({ adminUserName });
+    
     res.status(200).json({
       message: "Get all employees",
       employees: data,
@@ -52,7 +54,15 @@ exports.getAll = async (req, res, next) => {
 
 exports.get = async (req, res, next) => {
   try {
-    const data = await Employee.findById({ _id: req.params.id });
+    const adminUserName = req.user.userName;
+    const data = await Employee.findOne({ _id: req.params.id, adminUserName });
+
+    if (!data) {
+      return res.status(404).json({
+        message: "Employee not found or you don't have access",
+      });
+    }
+
     res.status(200).json({
       message: "Get the employee",
       employee: data,
@@ -68,11 +78,20 @@ exports.get = async (req, res, next) => {
 
 exports.edit = async (req, res, next) => {
   try {
-    const data = req.body;
-    await Employee.updateOne({ _id: req.params.id }, { $set: data });
+    const adminUserName = req.user.userName;
+    const data = await Employee.findOne({ _id: req.params.id, adminUserName });
+
+    if (!data) {
+      return res.status(404).json({
+        message: "Employee not found or you don't have access",
+      });
+    }
+
+    await Employee.updateOne({ _id: req.params.id, adminUserName }, { $set: req.body });
+
     res.status(200).json({
       message: "Employee edited successfully",
-      employee: data,
+      employee: req.body,
     });
   } catch (error) {
     if (!error.statusCode) {
@@ -85,7 +104,15 @@ exports.edit = async (req, res, next) => {
 
 exports.delete = async (req, res, next) => {
   try {
-    await Employee.findOneAndDelete({ _id: req.params.id });
+    const adminUserName = req.user.userName;
+    const data = await Employee.findOneAndDelete({ _id: req.params.id, adminUserName });
+
+    if (!data) {
+      return res.status(404).json({
+        message: "Employee not found or you don't have access",
+      });
+    }
+
     res.status(200).json({
       message: "Employee deleted successfully",
     });

@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
+  employeeUserName: {
+    type: String,
+    required: true,
+  },
   leaveType: {
     type: String,
     enum: ["sick", "casual", "vacation", "maternity", "paternity"],
