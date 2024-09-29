@@ -149,7 +149,7 @@ const UserLayout = ({ children }) => {
               <span className="font-semibold">Farhan Hassan Jabil</span>
               <FaUserCircle className="text-lg mr-2" />
             </NavLink>
-            <Link to="/login">
+            <Link to="/signInUp">
               <button className="flex items-center hover:text-red-300 transition">
                 <FaSignOutAlt className="text-lg mr-2" />
               </button>

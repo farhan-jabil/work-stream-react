@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/landing/Home";
 import Features from "./pages/landing/Features";
 import Footer from "./components/footer/Footer";
-import Login from "./pages/Login/Login";
+import SignInUp from "./layout/SignInUp";
 import AdminDashboard from "./pages/dashboard/admin/AdminDashboard";
 import UserLayout from "./layout/UserLayout";
 import EmployeeManagement from "./pages/dashboard/admin/EmloyeeManagement";
@@ -39,8 +39,8 @@ function App() {
             }
           />
           <Route
-            path="/login"
-            element={<Login />}
+            path="/signInUp"
+            element={<SignInUp />}
           />
           <Route
             path="/admin/dashboard"
