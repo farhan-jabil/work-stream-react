@@ -10,12 +10,15 @@ const EmployeeManagement = () => {
       const token = localStorage.getItem("auth-token");
 
       try {
-        const response = await fetch("http://localhost:5000/admin/employee-manage/get-all", {
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": token,
-          },
-        });
+        const response = await fetch(
+          "http://localhost:5000/admin/employee-manage/get-all",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": token,
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch employees");
@@ -33,22 +36,25 @@ const EmployeeManagement = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    const token = localStorage.getItem("auth-token"); 
+    const token = localStorage.getItem("auth-token");
 
     try {
-      const response = await fetch(`http://localhost:5000/admin/employee-manage/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": token,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:5000/admin/employee-manage/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": token,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to delete employee");
       }
 
-      setEmployees(employees.filter((employee) => employee._id !== id)); // Update the state to remove the deleted employee
+      setEmployees(employees.filter((employee) => employee._id !== id));
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
@@ -72,11 +78,21 @@ const EmployeeManagement = () => {
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
-            <th scope="col" className="px-6 py-3">Name</th>
-            <th scope="col" className="px-6 py-3">User Name</th>
-            <th scope="col" className="px-6 py-3">Email</th>
-            <th scope="col" className="px-6 py-3">Phone</th>
-            <th scope="col" className="px-6 py-3">Actions</th>
+            <th scope="col" className="px-6 py-3">
+              Name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              User Name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Email
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Phone
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>

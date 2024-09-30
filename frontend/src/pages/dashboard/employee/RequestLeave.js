@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 
 const RequestLeave = () => {
+  const [formData, setFormData] = useState({
+    leaveType: "",
+    startDate: "",
+    endDate: "",
+    reason: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem("auth-token");
+
+    fetch("http://localhost:5000/request-leave/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token,
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Leave request submitted:", data);
+      })
+      .catch((error) => {
+        console.error("Error submitting leave request:", error);
+      });
+  };
+
   return (
     <div className="p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Request Leave</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
             className="block text-gray-700 font-bold mb-2"
@@ -15,6 +51,8 @@ const RequestLeave = () => {
           <select
             id="leaveType"
             name="leaveType"
+            value={formData.leaveType}
+            onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg"
             required
           >
@@ -38,6 +76,8 @@ const RequestLeave = () => {
             type="date"
             id="startDate"
             name="startDate"
+            value={formData.startDate}
+            onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg"
             required
           />
@@ -54,6 +94,8 @@ const RequestLeave = () => {
             type="date"
             id="endDate"
             name="endDate"
+            value={formData.endDate}
+            onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg"
             required
           />
@@ -69,6 +111,8 @@ const RequestLeave = () => {
           <textarea
             id="reason"
             name="reason"
+            value={formData.reason}
+            onChange={handleChange}
             rows="4"
             className="w-full px-3 py-2 border rounded-lg"
             placeholder="Provide a reason for your leave"
