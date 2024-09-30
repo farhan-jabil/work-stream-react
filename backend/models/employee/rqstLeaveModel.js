@@ -5,6 +5,7 @@ const schema = new Schema({
   employeeUserName: {
     type: String,
     required: true,
+    ref: 'Employee'
   },
   leaveType: {
     type: String,

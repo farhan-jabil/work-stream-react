@@ -35,6 +35,7 @@ const RequestLeave = () => {
       .catch((error) => {
         console.error("Error submitting leave request:", error);
       });
+      
   };
 
   return (

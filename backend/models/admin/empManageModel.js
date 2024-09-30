@@ -4,26 +4,26 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   userName: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   phone: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   role: {
     type: String,
@@ -31,12 +31,12 @@ const schema = new Schema({
   },
   designation: {
     type: String,
-    required: true
+    required: true,
   },
   adminUserName: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Employee', schema);

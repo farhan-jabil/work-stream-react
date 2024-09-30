@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-// Mapping leave types to user-friendly names
 const leaveTypeMap = {
   sick: "Sick Leave",
   casual: "Casual Leave",
@@ -9,7 +8,6 @@ const leaveTypeMap = {
   paternity: "Paternity Leave",
 };
 
-// Function to format the date
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   return new Date(dateString).toLocaleDateString(undefined, options);
@@ -32,7 +30,7 @@ const EmployeeDashboard = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched leaves:", data);
-        setLeaves(data.requests); // Adjust according to your API response structure
+        setLeaves(data.requests);
         setLoading(false);
       })
       .catch((error) => {
