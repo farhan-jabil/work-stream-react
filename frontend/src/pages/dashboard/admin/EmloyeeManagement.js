@@ -6,24 +6,52 @@ const EmployeeManagement = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/admin/employee-manage/get-all")
-      .then((response) => response.json())
-      .then((data) => {
-        setEmployees(data.employee);
-        console.log("Employees set:", data.employee);
-      })
-      .catch((error) => console.error("Error fetching employees:", error));
+    const fetchEmployees = async () => {
+      const token = localStorage.getItem("auth-token");
+
+      try {
+        const response = await fetch("http://localhost:5000/admin/employee-manage/get-all", {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": token,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch employees");
+        }
+
+        const data = await response.json();
+        setEmployees(data.employees);
+        console.log("Employees set:", data);
+      } catch (error) {
+        console.error("Error fetching employees:", error);
+      }
+    };
+
+    fetchEmployees();
   }, []);
 
-  const handleDelete = (id) => {
-    fetch(`http://localhost:5000/admin/employee-manage/delete/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then(() => {
-        setEmployees(employees.filter((employee) => employee._id !== id));
-      })
-      .catch((error) => console.error("Error deleting employee:", error));
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("auth-token"); 
+
+    try {
+      const response = await fetch(`http://localhost:5000/admin/employee-manage/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": token,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete employee");
+      }
+
+      setEmployees(employees.filter((employee) => employee._id !== id)); // Update the state to remove the deleted employee
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+    }
   };
 
   const handleAddEmployee = () => {
@@ -44,18 +72,11 @@ const EmployeeManagement = () => {
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
-            <th scope="col" className="px-6 py-3">
-              Employee Name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Email
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Role
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Actions
-            </th>
+            <th scope="col" className="px-6 py-3">Name</th>
+            <th scope="col" className="px-6 py-3">User Name</th>
+            <th scope="col" className="px-6 py-3">Email</th>
+            <th scope="col" className="px-6 py-3">Phone</th>
+            <th scope="col" className="px-6 py-3">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -63,8 +84,9 @@ const EmployeeManagement = () => {
             employees.map((employee) => (
               <tr key={employee._id} className="bg-white border-b">
                 <td className="px-6 py-4">{employee.name}</td>
+                <td className="px-6 py-4">{employee.userName}</td>
                 <td className="px-6 py-4">{employee.email}</td>
-                <td className="px-6 py-4">{employee.role}</td>
+                <td className="px-6 py-4">{employee.phone}</td>
                 <td className="px-6 py-4 space-x-3">
                   <Link
                     to={`/admin/users/edit/${employee._id}`}
@@ -83,7 +105,7 @@ const EmployeeManagement = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4" className="text-center py-4">
+              <td colSpan="5" className="text-center py-4">
                 No employees found
               </td>
             </tr>

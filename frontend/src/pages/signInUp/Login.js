@@ -10,7 +10,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous error
+    setError("");
 
     try {
       const response = await fetch("http://localhost:5000/user/login", {
@@ -30,14 +30,13 @@ const Login = () => {
         const token = data.token;
         localStorage.setItem("auth-token", token);
 
-        // Decode the token to get user info
         const decodedToken = jwtDecode(token);
         const role = decodedToken.role; 
 
         if (role === "employee") {
-          navigate("/employee/dashboard"); // Redirect to employee dashboard
+          navigate("/employee/dashboard"); 
         } else {
-          navigate("/admin/dashboard"); // Redirect to admin dashboard
+          navigate("/admin/dashboard");
         }
       } else {
         setError(data.message || "Invalid credentials");
