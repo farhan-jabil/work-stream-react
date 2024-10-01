@@ -7,7 +7,7 @@ const requestLeaveRoute = require("./routes/employee/requestLeave");
 const userRoute = require("./routes/userRoute");
 const infoRoute = require("./routes/infoRoute");
 
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
