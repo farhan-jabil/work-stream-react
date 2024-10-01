@@ -20,7 +20,7 @@ const LeaveRequests = () => {
         console.log("Fetched leave requests:", data);
         const pendingRequests = data.requests.filter(
           (request) => request.status === "pending"
-        ); // Only show pending requests
+        );
         setLeaveRequests(pendingRequests);
         setLoading(false);
       })

@@ -29,7 +29,6 @@ const EmployeeDashboard = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched leaves:", data);
         setLeaves(data.requests);
         setLoading(false);
       })
@@ -51,7 +50,6 @@ const EmployeeDashboard = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Leave deleted:", data);
         setLeaves(leaves.filter((leave) => leave._id !== id));
       })
       .catch((error) => {
@@ -59,7 +57,22 @@ const EmployeeDashboard = () => {
       });
   };
 
-  console.log(leaves);
+  const capitalizeStatus = (status) => {
+    return status.charAt(0).toUpperCase() + status.slice(1);
+  };
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "pending":
+        return "bg-gradient-to-r from-yellow-400 to-yellow-600 text-white";
+      case "approved":
+        return "bg-gradient-to-r from-green-400 to-green-600 text-white";
+      case "rejected":
+        return "bg-gradient-to-r from-red-400 to-red-600 text-white";
+      default:
+        return "bg-gradient-to-r from-gray-400 to-gray-600 text-white";
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -74,17 +87,23 @@ const EmployeeDashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
           <h3 className="text-lg font-semibold">Pending Leave Requests</h3>
-          <p className="mt-2 text-4xl font-bold">2</p>
+          <p className="mt-2 text-4xl font-bold">
+            {leaves.filter((leave) => leave.status === "pending").length}
+          </p>
         </div>
 
         <div className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
           <h3 className="text-lg font-semibold">Approved Leaves</h3>
-          <p className="mt-2 text-4xl font-bold">5</p>
+          <p className="mt-2 text-4xl font-bold">
+            {leaves.filter((leave) => leave.status === "approved").length}
+          </p>
         </div>
 
         <div className="bg-gradient-to-r from-red-500 via-red-600 to-red-700 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
           <h3 className="text-lg font-semibold">Rejected Leaves</h3>
-          <p className="mt-2 text-4xl font-bold">1</p>
+          <p className="mt-2 text-4xl font-bold">
+            {leaves.filter((leave) => leave.status === "rejected").length}
+          </p>
         </div>
       </div>
 
@@ -113,23 +132,25 @@ const EmployeeDashboard = () => {
                   <td className="p-2">{formatDate(leave.endDate)}</td>
                   <td className="p-2">{leave.reason}</td>
                   <td className="p-2">
-                    {leave.status === "pending" && (
-                      <span className="text-yellow-500">Pending</span>
-                    )}
-                    {leave.status === "approved" && (
-                      <span className="text-green-500">Approved</span>
-                    )}
-                    {leave.status === "rejected" && (
-                      <span className="text-red-500">Rejected</span>
-                    )}
+                    <span
+                      className={`inline-block py-1 px-4 rounded-full text-sm font-semibold ${getStatusColor(
+                        leave.status
+                      )}`}
+                    >
+                      {capitalizeStatus(leave.status)}
+                    </span>
                   </td>
                   <td className="p-2">
-                    <button
-                      className="text-red-500 hover:underline"
-                      onClick={() => handleDelete(leave._id)}
-                    >
-                      Delete
-                    </button>
+                    {leave.status === "pending" ? (
+                      <button
+                        className="text-red-500 hover:underline"
+                        onClick={() => handleDelete(leave._id)}
+                      >
+                        Cancel Leave
+                      </button>
+                    ) : (
+                      <span className="text-gray-500">Can't cancel</span>
+                    )}
                   </td>
                 </tr>
               ))

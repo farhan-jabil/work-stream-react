@@ -10,6 +10,16 @@ exports.getUser = async (req, res) => {
       user = await Employee.findById(userId).select("-password");
     } else {
       user = await User.findById(userId).select("-password");
+
+      if (user) {
+        const employeeCount = await Employee.countDocuments({
+          adminUserName: req.user.userName
+        });
+        user = {
+          ...user.toObject(),
+          employeeCount: employeeCount
+        };
+      }
     }
 
     if (!user) {

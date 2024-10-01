@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaBars,
   FaClipboard,
-  FaChartBar,
   FaUsers,
   FaUserCircle,
   FaSignOutAlt,
@@ -14,13 +13,39 @@ import { images } from "../utils/images";
 
 const UserLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [userName, setUserName] = useState(""); 
   const location = useLocation();
-  
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
   const isAdmin = location.pathname.startsWith("/admin");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/user/me", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem('auth-token'),
+          },
+        });
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+
+        const data = await response.json();
+        setUserName(data.user.name);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -70,21 +95,6 @@ const UserLayout = ({ children }) => {
               <>
                 <li>
                   <NavLink
-                    to="/admin/users"
-                    className={({ isActive }) =>
-                      `flex items-center p-3 rounded-lg ${
-                        isActive ? "bg-blue-700" : "hover:bg-blue-800"
-                      } transition`
-                    }
-                  >
-                    <FaUsers className="text-lg" />
-                    <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                      Manage Employees
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
                     to="/admin/leave-requests"
                     className={({ isActive }) =>
                       `flex items-center p-3 rounded-lg ${
@@ -95,6 +105,21 @@ const UserLayout = ({ children }) => {
                     <FaClipboard className="text-lg" />
                     <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
                       Leave Requests
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/admin/users"
+                    className={({ isActive }) =>
+                      `flex items-center p-3 rounded-lg ${
+                        isActive ? "bg-blue-700" : "hover:bg-blue-800"
+                      } transition`
+                    }
+                  >
+                    <FaUsers className="text-lg" />
+                    <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                      Manage Employees
                     </span>
                   </NavLink>
                 </li>
@@ -118,21 +143,6 @@ const UserLayout = ({ children }) => {
                 </li>
               </>
             )}
-            <li>
-              <NavLink
-                to={isAdmin ? "/admin/settings" : "/employee/settings"}
-                className={({ isActive }) =>
-                  `flex items-center p-3 rounded-lg ${
-                    isActive ? "bg-blue-700" : "hover:bg-blue-800"
-                  } transition`
-                }
-              >
-                <FaCog className="text-lg" />
-                <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                  Settings
-                </span>
-              </NavLink>
-            </li>
           </ul>
         </nav>
       </div>
@@ -142,13 +152,12 @@ const UserLayout = ({ children }) => {
           <h1 className="text-2xl font-semibold">{isAdmin ? "Admin" : "Employee"} Dashboard</h1>
           <div className="flex items-center space-x-5">
             Hi,
-            <NavLink
-              to={isAdmin ? "/admin/profile" : "/employee/profile"}
+            <div
               className="flex items-center ml-2 space-x-4 hover:text-gray-200 transition"
             >
-              <span className="font-semibold">Farhan Hassan Jabil</span>
+              <span className="font-semibold">{userName || "Loading..."}</span>
               <FaUserCircle className="text-lg mr-2" />
-            </NavLink>
+            </div>
             <Link to="/signInUp">
               <button className="flex items-center hover:text-red-300 transition">
                 <FaSignOutAlt className="text-lg mr-2" />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SignUp = () => {
+const SignUp = ({ handleFormSwitch }) => {
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,8 +11,9 @@ const SignUp = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
+    // Password confirmation check
     if (password !== confirmPassword) {
-      console.log("Passwords do not match");
+      alert("Passwords do not match");
       return;
     }
 
@@ -22,23 +23,34 @@ const SignUp = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, userName, email, phoneNumber, password }),
+        body: JSON.stringify({
+          name,
+          userName,
+          email,
+          phoneNumber,
+          password,
+        }),
       });
 
       const data = await response.json();
 
+      // On successful signup, switch to login form
       if (response.ok) {
-        console.log("Signup successful:", data);
+        alert("Signup successful!");
+        handleFormSwitch("login");  // Redirect to login form
       } else {
-        console.log("Signup failed:", data);
+        alert(`Signup failed: ${data.message}`);
+        console.log(data);
       }
     } catch (error) {
-      console.log("Error during signup:", error);
+      alert(`Error during signup: ${error.message}`);
+      console.log(error);
     }
   };
 
   return (
     <form onSubmit={handleSignup}>
+      {/* Name and Username Fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-5">
         <div>
           <label className="block text-gray-700 mb-2 text-lg">Name</label>
@@ -63,6 +75,7 @@ const SignUp = () => {
         </div>
       </div>
 
+      {/* Email and Phone Number Fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-5">
         <div>
           <label className="block text-gray-700 mb-2 text-lg">Email</label>
@@ -87,6 +100,7 @@ const SignUp = () => {
         </div>
       </div>
 
+      {/* Password and Confirm Password Fields */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-5">
         <div>
           <label className="block text-gray-700 mb-2 text-lg">Password</label>
@@ -111,6 +125,7 @@ const SignUp = () => {
         </div>
       </div>
 
+      {/* Signup Button */}
       <button
         type="submit"
         className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white py-3 rounded-lg font-semibold shadow-lg transform transition duration-500 hover:scale-105"

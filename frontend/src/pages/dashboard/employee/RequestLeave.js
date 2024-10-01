@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RequestLeave = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ const RequestLeave = () => {
     endDate: "",
     reason: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -30,12 +33,12 @@ const RequestLeave = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Leave request submitted:", data);
+        alert("Leave request submitted successfully!");
+        navigate("/employee/dashboard");
       })
       .catch((error) => {
         console.error("Error submitting leave request:", error);
       });
-      
   };
 
   return (

@@ -20,24 +20,16 @@ const SignInUp = () => {
             className="h-16 rounded-full shadow-lg"
           />
         </div>
-        <div className={`bg-white p-10 rounded-2xl shadow-2xl ${ activeForm == "login"? "max-w-md" : "max-w-2xl" } w-full mx-auto`}>
+        <div className={`bg-white p-10 rounded-2xl shadow-2xl ${activeForm === "login" ? "max-w-md" : "max-w-2xl"} w-full mx-auto`}>
           <div className="flex justify-center mb-6">
             <button
-              className={`text-2xl font-bold px-6 py-2 ${
-                activeForm === "login"
-                  ? "text-blue-500 border-b-2 border-blue-500"
-                  : "text-gray-500"
-              }`}
+              className={`text-2xl font-bold px-6 py-2 ${activeForm === "login" ? "text-blue-500 border-b-2 border-blue-500" : "text-gray-500"}`}
               onClick={() => handleFormSwitch("login")}
             >
               Login
             </button>
             <button
-              className={`text-2xl font-bold px-6 py-2 ${
-                activeForm === "signup"
-                  ? "text-blue-500 border-b-2 border-blue-500"
-                  : "text-gray-500"
-              }`}
+              className={`text-2xl font-bold px-6 py-2 ${activeForm === "signup" ? "text-blue-500 border-b-2 border-blue-500" : "text-gray-500"}`}
               onClick={() => handleFormSwitch("signup")}
             >
               Signup
@@ -46,7 +38,7 @@ const SignInUp = () => {
 
           <div className="form-content">
             {activeForm === "login" && <Login />}
-            {activeForm === "signup" && <Signup />}
+            {activeForm === "signup" && <Signup handleFormSwitch={handleFormSwitch} />}
           </div>
         </div>
       </div>
