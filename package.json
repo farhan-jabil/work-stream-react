@@ -6,7 +6,7 @@
   "scripts": {
     "frontend": "cd frontend && yarn start",
     "backend": "cd backend && nodemon index.js",
-    "build": "cd frontend && yarn build",
+    "build": "cd frontend && yarn run build",
     "both": "concurrently \"yarn frontend\" \"yarn backend\""
   },
   "repository": {
