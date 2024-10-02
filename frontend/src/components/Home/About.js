@@ -91,8 +91,7 @@ const About = () => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <div className="w-full">
-              <a
-                href="#"
+              <div
                 className="block h-full max-w-lg text-center py-12 px-8 mx-auto bg-[#C9E3F1] text-gray-800 border border-5 shadow-lg border-[#C9E3F1] rounded-2xl"
               >
                 <h5 className="mb-2 font-bold">
@@ -104,11 +103,10 @@ const About = () => {
                 <p className="font-semibold mt-8 text-xl lg:text-2xl">
                   Clients Served
                 </p>
-              </a>
+              </div>
             </div>
             <div className="w-full">
-              <a
-                href="#"
+              <div
                 className="block h-full max-w-lg text-center py-12 px-8 mx-auto bg-[#E0F7FA] text-gray-800 border border-5 shadow-lg border-[#E0F7FA] rounded-2xl"
               >
                 <h5 className="mb-2 font-bold">
@@ -120,11 +118,10 @@ const About = () => {
                 <p className="font-semibold mt-8 text-xl lg:text-2xl">
                   Projects Completed
                 </p>
-              </a>
+              </div>
             </div>
             <div className="w-full">
-              <a
-                href="#"
+              <div
                 className="block h-full max-w-lg text-center py-12 px-8 mx-auto bg-[#B9EAB1] text-gray-800 border border-5 shadow-lg border-[#B9EAB1] rounded-2xl"
               >
                 <h5 className="mb-2 font-bold">
@@ -136,14 +133,13 @@ const About = () => {
                 <p className="font-semibold mt-8 text-xl lg:text-2xl">
                   Awards Won
                 </p>
-              </a>
+              </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 mt-10">
             <div className="w-full">
-              <a
-                href="#"
+              <div
                 className="block h-full max-w-sm text-center py-12 px-8 mx-auto bg-[#B3E5FC] text-gray-800 border border-5 shadow-lg border-[#B3E5FC] rounded-2xl"
               >
                 <h5 className="mb-2 font-bold">
@@ -155,11 +151,10 @@ const About = () => {
                 <p className="font-semibold mt-8 text-xl lg:text-2xl">
                   Countries Served
                 </p>
-              </a>
+              </div>
             </div>
             <div className="w-full">
-              <a
-                href="#"
+              <div
                 className="block h-full max-w-sm text-center py-12 px-8 mx-auto bg-[#D1C4E9] text-gray-800 border border-5 shadow-lg border-[#D1C4E9] rounded-2xl"
               >
                 <h5 className="mb-2 font-bold">
@@ -171,7 +166,7 @@ const About = () => {
                 <p className="font-semibold mt-8 text-xl lg:text-2xl">
                   Team Members
                 </p>
-              </a>
+              </div>
             </div>
           </div>
         </div>

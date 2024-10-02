@@ -30,7 +30,7 @@ const Footer = () => {
                 <FaEnvelope className="mr-2" /> info@example.com
               </p>
               <p className="text-gray-600">
-                We’re here to help with any inquiries or support related to your
+                We're here to help with any inquiries or support related to your
                 leave management needs.
               </p>
             </div>
@@ -68,18 +68,18 @@ const Footer = () => {
                   Follow Us
                 </h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-gray-600 hover:text-gray-800">
+                  <span className="text-gray-600 hover:text-gray-800">
                     <FaFacebookF className="w-6 h-6" />
-                  </a>
-                  <a href="#" className="text-gray-600 hover:text-gray-800">
+                  </span>
+                  <span className="text-gray-600 hover:text-gray-800">
                     <FaTwitter className="w-6 h-6" />
-                  </a>
-                  <a href="#" className="text-gray-600 hover:text-gray-800">
+                  </span>
+                  <span className="text-gray-600 hover:text-gray-800">
                     <FaInstagram className="w-6 h-6" />
-                  </a>
-                  <a href="#" className="text-gray-600 hover:text-gray-800">
+                  </span>
+                  <span className="text-gray-600 hover:text-gray-800">
                     <FaLinkedinIn className="w-6 h-6" />
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -90,24 +90,24 @@ const Footer = () => {
               </h3>
               <ul className="text-gray-600 space-y-2">
                 <li>
-                  <a href="#" className="hover:text-gray-800">
+                  <div className="hover:text-gray-800">
                     Leave Application Management
-                  </a>
+                  </div>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-gray-800">
+                  <div className="hover:text-gray-800">
                     Real-Time Leave Tracking
-                  </a>
+                  </div>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-gray-800">
+                  <div className="hover:text-gray-800">
                     Leave Policy Compliance
-                  </a>
+                  </div>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-gray-800">
+                  <div className="hover:text-gray-800">
                     Reporting & Analytics
-                  </a>
+                  </div>
                 </li>
               </ul>
             </div>
