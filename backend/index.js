@@ -32,6 +32,11 @@ app.use("/admin/employee-manage", authMiddleware, employeeManagementRoute);
 app.use("/request-leave", authMiddleware, requestLeaveRoute);
 app.use("/user", userRoute);
 app.use("/user", authMiddleware, infoRoute);
+app.get("/health" , async (req, res, next) => {
+  res.status(200).send({
+    status: "Ok"
+  })
+})
 
 const port = process.env.PORT || 5000;
 
