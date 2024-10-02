@@ -23,7 +23,7 @@ const RequestLeave = () => {
 
     const token = localStorage.getItem("auth-token");
 
-    fetch("https://app-triangle-task.onrender.com/request-leave/add", {
+    fetch(`${process.env.REACT_APP_API_URL}/request-leave/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

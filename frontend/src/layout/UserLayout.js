@@ -5,16 +5,16 @@ import {
   FaUsers,
   FaUserCircle,
   FaSignOutAlt,
-  FaCog,
   FaTachometerAlt,
 } from "react-icons/fa";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"; 
 import { images } from "../utils/images";
 
 const UserLayout = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [userName, setUserName] = useState(""); 
+  const [userName, setUserName] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -23,16 +23,26 @@ const UserLayout = ({ children }) => {
   const isAdmin = location.pathname.startsWith("/admin");
 
   useEffect(() => {
+    const token = localStorage.getItem("auth-token");
+
+    if (!token) {
+      navigate("/signInUp");
+      return;
+    }
+
     const fetchUserData = async () => {
       try {
-        const response = await fetch("https://app-triangle-task.onrender.com/user/me", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem('auth-token'),
-          },
-        });
-        
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/user/me`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": token,
+            },
+          }
+        );
+
         if (!response.ok) {
           throw new Error("Failed to fetch user data");
         }
@@ -45,7 +55,7 @@ const UserLayout = ({ children }) => {
     };
 
     fetchUserData();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -125,23 +135,21 @@ const UserLayout = ({ children }) => {
                 </li>
               </>
             ) : (
-              <>
-                <li>
-                  <NavLink
-                    to="/employee/request-leave"
-                    className={({ isActive }) =>
-                      `flex items-center p-3 rounded-lg ${
-                        isActive ? "bg-blue-700" : "hover:bg-blue-800"
-                      } transition`
-                    }
-                  >
-                    <FaClipboard className="text-lg" />
-                    <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                      Request Leave
-                    </span>
-                  </NavLink>
-                </li>
-              </>
+              <li>
+                <NavLink
+                  to="/employee/request-leave"
+                  className={({ isActive }) =>
+                    `flex items-center p-3 rounded-lg ${
+                      isActive ? "bg-blue-700" : "hover:bg-blue-800"
+                    } transition`
+                  }
+                >
+                  <FaClipboard className="text-lg" />
+                  <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                    Request Leave
+                  </span>
+                </NavLink>
+              </li>
             )}
           </ul>
         </nav>
@@ -149,17 +157,22 @@ const UserLayout = ({ children }) => {
 
       <div className="flex-1 flex flex-col">
         <nav className="flex items-center justify-between py-4 px-10 bg-blue-900 text-white shadow">
-          <h1 className="text-2xl font-semibold">{isAdmin ? "Admin" : "Employee"} Dashboard</h1>
+          <h1 className="text-2xl font-semibold">
+            {isAdmin ? "Admin" : "Employee"} Dashboard
+          </h1>
           <div className="flex items-center space-x-5">
             Hi,
-            <div
-              className="flex items-center ml-2 space-x-4 hover:text-gray-200 transition"
-            >
+            <div className="flex items-center ml-2 space-x-4 hover:text-gray-200 transition">
               <span className="font-semibold">{userName || "Loading..."}</span>
               <FaUserCircle className="text-lg mr-2" />
             </div>
             <Link to="/signInUp">
-              <button className="flex items-center hover:text-red-300 transition">
+              <button
+                className="flex items-center hover:text-red-300 transition"
+                onClick={() => {
+                  localStorage.removeItem("auth-token");
+                }}
+              >
                 <FaSignOutAlt className="text-lg mr-2" />
               </button>
             </Link>

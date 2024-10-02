@@ -18,7 +18,7 @@ const SignUp = ({ handleFormSwitch }) => {
     }
 
     try {
-      const response = await fetch("https://app-triangle-task.onrender.com/user/signup", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

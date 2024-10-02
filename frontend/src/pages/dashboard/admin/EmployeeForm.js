@@ -16,7 +16,7 @@ const EmployeeForm = () => {
 
   useEffect(() => {
     if (id) {
-      fetch(`https://app-triangle-task.onrender.com/admin/employee-manage/get/${id}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/admin/employee-manage/get/${id}`, {
         headers: {
           "auth-token": localStorage.getItem('auth-token'),
         },
@@ -38,8 +38,8 @@ const EmployeeForm = () => {
     e.preventDefault();
     
     const url = id
-      ? `https://app-triangle-task.onrender.com/admin/employee-manage/edit/${id}`
-      : "https://app-triangle-task.onrender.com/admin/employee-manage/add";
+      ? `${process.env.REACT_APP_API_URL}/admin/employee-manage/edit/${id}`
+      : `${process.env.REACT_APP_API_URL}/admin/employee-manage/add`;
     const method = id ? "PUT" : "POST";
 
     fetch(url, {

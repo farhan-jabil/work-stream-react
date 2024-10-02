@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; 
+import jwtDecode from "jwt-decode";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
@@ -13,7 +13,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await fetch(`https://app-triangle-task.onrender.com/user/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,10 +31,10 @@ const Login = () => {
         localStorage.setItem("auth-token", token);
 
         const decodedToken = jwtDecode(token);
-        const role = decodedToken.role; 
+        const role = decodedToken.role;
 
         if (role === "employee") {
-          navigate("/employee/dashboard"); 
+          navigate("/employee/dashboard");
         } else {
           navigate("/admin/dashboard");
         }

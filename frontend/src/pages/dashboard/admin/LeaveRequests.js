@@ -8,7 +8,7 @@ const LeaveRequests = () => {
   useEffect(() => {
     const token = localStorage.getItem("auth-token");
 
-    fetch("https://app-triangle-task.onrender.com/request-leave/get-all", {
+    fetch(`${process.env.REACT_APP_API_URL}/request-leave/get-all`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const LeaveRequests = () => {
   const updateLeaveStatus = (id, status) => {
     const token = localStorage.getItem("auth-token");
 
-    fetch(`https://app-triangle-task.onrender.com/request-leave/update-status/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/request-leave/update-status/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

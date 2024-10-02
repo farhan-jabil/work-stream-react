@@ -13,7 +13,7 @@ const AdminDashboard = () => {
       try {
         const token = localStorage.getItem("auth-token");
 
-        const userResponse = await fetch("https://app-triangle-task.onrender.com/user/me", {
+        const userResponse = await fetch(`${process.env.REACT_APP_API_URL}/user/me`, {
           headers: {
             "Content-Type": "application/json",
             "auth-token": token,
@@ -23,7 +23,7 @@ const AdminDashboard = () => {
         setEmployeeCount(userData.user.employeeCount);
 
         const leaveResponse = await fetch(
-          "https://app-triangle-task.onrender.com/request-leave/get-all",
+          `${process.env.REACT_APP_API_URL}/request-leave/get-all`,
           {
             headers: {
               "Content-Type": "application/json",
