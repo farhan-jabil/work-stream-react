@@ -11,7 +11,7 @@ const EmployeeManagement = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/admin/employee-manage/get-all",
+          "https://app-triangle-task.onrender.com/admin/employee-manage/get-all",
           {
             headers: {
               "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const EmployeeManagement = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/admin/employee-manage/delete/${id}`,
+        `https://app-triangle-task.onrender.com/admin/employee-manage/delete/${id}`,
         {
           method: "DELETE",
           headers: {

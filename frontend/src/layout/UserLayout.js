@@ -25,7 +25,7 @@ const UserLayout = ({ children }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/user/me", {
+        const response = await fetch("https://app-triangle-task.onrender.com/user/me", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
