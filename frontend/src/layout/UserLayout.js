@@ -7,7 +7,7 @@ import {
   FaSignOutAlt,
   FaTachometerAlt,
 } from "react-icons/fa";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"; 
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { images } from "../utils/images";
 
 const UserLayout = ({ children }) => {
@@ -58,54 +58,122 @@ const UserLayout = ({ children }) => {
   }, [navigate]);
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <div
-        className={`${
-          isOpen ? "w-64" : "w-20"
-        } bg-blue-900 text-white h-full transition-all duration-300 shadow-lg`}
-      >
-        <div className="flex items-center justify-center space-x-3 bg-blue-700 h-16 py-2">
-          <NavLink
-            to="/"
-            className={`flex items-center p-4 h-full lg:p-0 ${
-              isOpen ? "block" : "hidden"
-            } `}
+    <>
+      <div className="flex bg-gray-100">
+        <div className={`text-white`}>
+          <div
+            className={`${
+              isOpen ? "w-52 lg:w-64" : "w-20"
+            } flex items-center justify-center space-x-3 bg-blue-700 h-16 py-2`}
           >
-            <img
-              src={images.logo}
-              alt="Flexi Leave Logo"
-              className="h-full mr-2 rounded-xl"
-            />
-          </NavLink>
-          <button
-            onClick={toggleSidebar}
-            className="text-xl focus:outline-none"
-          >
-            <FaBars />
-          </button>
+            <NavLink
+              to="/"
+              className={`flex items-center p-4 h-full lg:p-0 ${
+                isOpen ? "block" : "hidden"
+              } `}
+            >
+              <img
+                src={images.logo}
+                alt="Flexi Leave Logo"
+                className="h-full mr-2 rounded-xl"
+              />
+            </NavLink>
+            <button
+              onClick={toggleSidebar}
+              className="text-xl focus:outline-none"
+            >
+              <FaBars />
+            </button>
+          </div>
         </div>
-        <nav className="mt-6">
-          <ul className="space-y-6 px-4">
-            <li>
-              <NavLink
-                to={isAdmin ? "/admin/dashboard" : "/employee/dashboard"}
-                className={({ isActive }) =>
-                  `flex items-center p-3 rounded-lg ${
-                    isActive ? "bg-blue-700" : "hover:bg-blue-800"
-                  } transition`
-                }
-              >
-                <FaTachometerAlt className="text-lg" />
-                <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                  Dashboard
+
+        <div className="flex-1 flex flex-col bg-red-500">
+          <nav className="flex items-center justify-between py-4 px-10 bg-blue-900 text-white shadow">
+            <h1 className="text-2xl font-semibold">
+              {isAdmin ? "Admin" : "Employee"} Dashboard
+            </h1>
+            <div className="flex items-center space-x-5">
+              Hi,
+              <div className="flex items-center ml-2 space-x-4 hover:text-gray-200 transition">
+                <span className="font-semibold">
+                  {userName || "Loading..."}
                 </span>
-              </NavLink>
-            </li>
-            {isAdmin ? (
-              <>
+                <FaUserCircle className="text-lg mr-2" />
+              </div>
+              <Link to="/signInUp">
+                <button
+                  className="flex items-center hover:text-red-300 transition"
+                  onClick={() => {
+                    localStorage.removeItem("auth-token");
+                  }}
+                >
+                  <FaSignOutAlt className="text-lg mr-2" />
+                </button>
+              </Link>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div className="flex h-screen">
+        <div className="text-white">
+          <nav
+            className={`${
+              isOpen ? "block w-52 lg:w-64" : "hidden lg:block w-20"
+            } bg-blue-900 h-full py-6`}
+          >
+            <ul className="space-y-6 px-4">
+              <li>
+                <NavLink
+                  to={isAdmin ? "/admin/dashboard" : "/employee/dashboard"}
+                  className={({ isActive }) =>
+                    `flex items-center p-3 rounded-lg ${
+                      isActive ? "bg-blue-700" : "hover:bg-blue-800"
+                    } transition`
+                  }
+                >
+                  <FaTachometerAlt className="text-lg" />
+                  <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                    Dashboard
+                  </span>
+                </NavLink>
+              </li>
+              {isAdmin ? (
+                <>
+                  <li>
+                    <NavLink
+                      to="/admin/leave-requests"
+                      className={({ isActive }) =>
+                        `flex items-center p-3 rounded-lg ${
+                          isActive ? "bg-blue-700" : "hover:bg-blue-800"
+                        } transition`
+                      }
+                    >
+                      <FaClipboard className="text-lg" />
+                      <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                        Leave Requests
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/admin/users"
+                      className={({ isActive }) =>
+                        `flex items-center p-3 rounded-lg ${
+                          isActive ? "bg-blue-700" : "hover:bg-blue-800"
+                        } transition`
+                      }
+                    >
+                      <FaUsers className="text-lg" />
+                      <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                        Manage Employees
+                      </span>
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
                 <li>
                   <NavLink
-                    to="/admin/leave-requests"
+                    to="/employee/request-leave"
                     className={({ isActive }) =>
                       `flex items-center p-3 rounded-lg ${
                         isActive ? "bg-blue-700" : "hover:bg-blue-800"
@@ -114,74 +182,17 @@ const UserLayout = ({ children }) => {
                   >
                     <FaClipboard className="text-lg" />
                     <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                      Leave Requests
+                      Request Leave
                     </span>
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="/admin/users"
-                    className={({ isActive }) =>
-                      `flex items-center p-3 rounded-lg ${
-                        isActive ? "bg-blue-700" : "hover:bg-blue-800"
-                      } transition`
-                    }
-                  >
-                    <FaUsers className="text-lg" />
-                    <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                      Manage Employees
-                    </span>
-                  </NavLink>
-                </li>
-              </>
-            ) : (
-              <li>
-                <NavLink
-                  to="/employee/request-leave"
-                  className={({ isActive }) =>
-                    `flex items-center p-3 rounded-lg ${
-                      isActive ? "bg-blue-700" : "hover:bg-blue-800"
-                    } transition`
-                  }
-                >
-                  <FaClipboard className="text-lg" />
-                  <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
-                    Request Leave
-                  </span>
-                </NavLink>
-              </li>
-            )}
-          </ul>
-        </nav>
+              )}
+            </ul>
+          </nav>
+        </div>
+        <div className="p-10 w-screen">{children}</div>
       </div>
-
-      <div className="flex-1 flex flex-col">
-        <nav className="flex items-center justify-between py-4 px-10 bg-blue-900 text-white shadow">
-          <h1 className="text-2xl font-semibold">
-            {isAdmin ? "Admin" : "Employee"} Dashboard
-          </h1>
-          <div className="flex items-center space-x-5">
-            Hi,
-            <div className="flex items-center ml-2 space-x-4 hover:text-gray-200 transition">
-              <span className="font-semibold">{userName || "Loading..."}</span>
-              <FaUserCircle className="text-lg mr-2" />
-            </div>
-            <Link to="/signInUp">
-              <button
-                className="flex items-center hover:text-red-300 transition"
-                onClick={() => {
-                  localStorage.removeItem("auth-token");
-                }}
-              >
-                <FaSignOutAlt className="text-lg mr-2" />
-              </button>
-            </Link>
-          </div>
-        </nav>
-
-        <div className="flex-1 p-10">{children}</div>
-      </div>
-    </div>
+    </>
   );
 };
 
