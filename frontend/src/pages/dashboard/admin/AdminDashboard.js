@@ -115,8 +115,6 @@ const AdminDashboard = () => {
           Employee Leave Requests
         </h2>
         <div className="overflow-x-auto">
-          {" "}
-          {/* Enable horizontal scroll on small screens */}
           <table className="min-w-full bg-white border border-collapse border-gray-300 text-center">
             <thead>
               <tr>

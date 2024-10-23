@@ -189,7 +189,7 @@ const UserLayout = ({ children }) => {
             </ul>
           </nav>
         </div>
-        <div className="p-10 w-screen">{children}</div>
+        <div className="p-5 lg:p-10 w-screen">{children}</div>
       </div>
     </>
   );

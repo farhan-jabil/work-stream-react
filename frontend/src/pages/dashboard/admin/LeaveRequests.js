@@ -68,7 +68,7 @@ const LeaveRequests = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Leave Requests</h2>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto"> {/* Enable horizontal scroll */}
         <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
@@ -87,11 +87,17 @@ const LeaveRequests = () => {
                     {request.employeeName}
                   </td>
                   <td className="px-6 py-4">
-                    {request.leaveType === "sick" ? "Sick Leave" :
-                     request.leaveType === "casual" ? "Casual Leave" :
-                     request.leaveType === "vacation" ? "Vacation Leave" :
-                     request.leaveType === "maternity" ? "Maternity Leave" :
-                     request.leaveType === "paternity" ? "Paternity Leave" : "Other"}
+                    {request.leaveType === "sick"
+                      ? "Sick Leave"
+                      : request.leaveType === "casual"
+                      ? "Casual Leave"
+                      : request.leaveType === "vacation"
+                      ? "Vacation Leave"
+                      : request.leaveType === "maternity"
+                      ? "Maternity Leave"
+                      : request.leaveType === "paternity"
+                      ? "Paternity Leave"
+                      : "Other"}
                   </td>
                   <td className="px-6 py-4">
                     {new Date(request.startDate).toLocaleDateString()}
