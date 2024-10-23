@@ -16,6 +16,7 @@ const formatDate = (dateString) => {
 const EmployeeDashboard = () => {
   const [leaves, setLeaves] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("auth-token");
@@ -34,6 +35,7 @@ const EmployeeDashboard = () => {
       })
       .catch((error) => {
         console.error("Error fetching leaves:", error);
+        setError("Failed to load leave requests");
         setLoading(false);
       });
   }, []);
@@ -78,12 +80,17 @@ const EmployeeDashboard = () => {
     return <div>Loading...</div>;
   }
 
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
   return (
     <div className="p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">
         Employee Dashboard
       </h2>
 
+      {/* Leave Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
           <h3 className="text-lg font-semibold">Pending Leave Requests</h3>
@@ -107,62 +114,67 @@ const EmployeeDashboard = () => {
         </div>
       </div>
 
+      {/* Leave Requests Table */}
       <div className="mt-8 bg-white p-6 rounded-lg shadow-lg">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">
           All Leave Requests
         </h3>
 
-        <table className="w-full text-left table-auto border-collapse">
-          <thead>
-            <tr>
-              <th className="border-b-2 p-2">Leave Type</th>
-              <th className="border-b-2 p-2">Start Date</th>
-              <th className="border-b-2 p-2">End Date</th>
-              <th className="border-b-2 p-2">Reason</th>
-              <th className="border-b-2 p-2">Status</th>
-              <th className="border-b-2 p-2">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaves.length > 0 ? (
-              leaves.map((leave) => (
-                <tr key={leave._id} className="border-b">
-                  <td className="p-2">{leaveTypeMap[leave.leaveType]}</td>
-                  <td className="p-2">{formatDate(leave.startDate)}</td>
-                  <td className="p-2">{formatDate(leave.endDate)}</td>
-                  <td className="p-2">{leave.reason}</td>
-                  <td className="p-2">
-                    <span
-                      className={`inline-block py-1 px-4 rounded-full text-sm font-semibold ${getStatusColor(
-                        leave.status
-                      )}`}
-                    >
-                      {capitalizeStatus(leave.status)}
-                    </span>
-                  </td>
-                  <td className="p-2">
-                    {leave.status === "pending" ? (
-                      <button
-                        className="text-red-500 hover:underline"
-                        onClick={() => handleDelete(leave._id)}
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-left table-auto border-collapse">
+            <thead>
+              <tr>
+                <th className="border-b-2 p-2">Leave Type</th>
+                <th className="border-b-2 p-2">Start Date</th>
+                <th className="border-b-2 p-2">End Date</th>
+                <th className="border-b-2 p-2">Reason</th>
+                <th className="border-b-2 p-2">Status</th>
+                <th className="border-b-2 p-2">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaves.length > 0 ? (
+                leaves.map((leave) => (
+                  <tr key={leave._id} className="border-b">
+                    <td className="p-2">{leaveTypeMap[leave.leaveType]}</td>
+                    <td className="p-2">{formatDate(leave.startDate)}</td>
+                    <td className="p-2">{formatDate(leave.endDate)}</td>
+                    <td className="p-2">{leave.reason}</td>
+                    <td className="p-2">
+                      <span
+                        className={`inline-block py-1 px-4 rounded-full text-sm font-semibold ${getStatusColor(
+                          leave.status
+                        )}`}
+                        aria-label={leave.status}
                       >
-                        Cancel Leave
-                      </button>
-                    ) : (
-                      <span className="text-gray-500">Can't cancel</span>
-                    )}
+                        {capitalizeStatus(leave.status)}
+                      </span>
+                    </td>
+                    <td className="p-2">
+                      {leave.status === "pending" ? (
+                        <button
+                          className="text-red-500 hover:underline"
+                          onClick={() => handleDelete(leave._id)}
+                          aria-label="Cancel Leave"
+                        >
+                          Cancel Leave
+                        </button>
+                      ) : (
+                        <span className="text-gray-500">Can't cancel</span>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" className="text-center py-4">
+                    No leave requests found.
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="6" className="text-center py-4">
-                  No Leaves
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
