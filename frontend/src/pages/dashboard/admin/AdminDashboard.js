@@ -13,12 +13,15 @@ const AdminDashboard = () => {
       try {
         const token = localStorage.getItem("auth-token");
 
-        const userResponse = await fetch(`${process.env.REACT_APP_API_URL}/user/me`, {
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": token,
-          },
-        });
+        const userResponse = await fetch(
+          `${process.env.REACT_APP_API_URL}/user/me`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": token,
+            },
+          }
+        );
         const userData = await userResponse.json();
         setEmployeeCount(userData.user.employeeCount);
 
@@ -111,34 +114,40 @@ const AdminDashboard = () => {
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Employee Leave Requests
         </h2>
-        <table className="min-w-full bg-white border border-collapse border-gray-300 text-center">
-          <thead>
-            <tr>
-              <th className="py-3 px-6 border-b font-medium">Employee Name</th>
-              <th className="py-3 px-6 border-b font-medium">Leave Start</th>
-              <th className="py-3 px-6 border-b font-medium">Leave End</th>
-              <th className="py-3 px-6 border-b font-medium">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leaveRequests.map((request) => (
-              <tr key={request._id} className="border-b">
-                <td className="py-3 px-6">{request.employeeName}</td>
-                <td className="py-3 px-6">{formatDate(request.startDate)}</td>
-                <td className="py-3 px-6">{formatDate(request.endDate)}</td>
-                <td className="py-3 px-6">
-                  <span
-                    className={`inline-block py-1 px-4 rounded-full text-sm font-semibold ${getStatusColor(
-                      request.status
-                    )}`}
-                  >
-                    {capitalizeStatus(request.status)}
-                  </span>
-                </td>
+        <div className="overflow-x-auto">
+          {" "}
+          {/* Enable horizontal scroll on small screens */}
+          <table className="min-w-full bg-white border border-collapse border-gray-300 text-center">
+            <thead>
+              <tr>
+                <th className="py-3 px-6 border-b font-medium">
+                  Employee Name
+                </th>
+                <th className="py-3 px-6 border-b font-medium">Leave Start</th>
+                <th className="py-3 px-6 border-b font-medium">Leave End</th>
+                <th className="py-3 px-6 border-b font-medium">Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {leaveRequests.map((request) => (
+                <tr key={request._id} className="border-b">
+                  <td className="py-3 px-6">{request.employeeName}</td>
+                  <td className="py-3 px-6">{formatDate(request.startDate)}</td>
+                  <td className="py-3 px-6">{formatDate(request.endDate)}</td>
+                  <td className="py-3 px-6">
+                    <span
+                      className={`inline-block py-1 px-4 rounded-full text-sm font-semibold ${getStatusColor(
+                        request.status
+                      )}`}
+                    >
+                      {capitalizeStatus(request.status)}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

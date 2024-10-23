@@ -63,8 +63,8 @@ const UserLayout = ({ children }) => {
         <div className={`text-white`}>
           <div
             className={`${
-              isOpen ? "w-52 lg:w-64" : "w-20"
-            } flex items-center justify-center space-x-3 bg-blue-700 h-16 py-2`}
+              isOpen ? "w-32 lg:w-64" : "w-20"
+            } flex items-center justify-center space-x-3 bg-blue-700 h-full lg:h-16 py-2 pr-4`}
           >
             <NavLink
               to="/"
@@ -87,9 +87,9 @@ const UserLayout = ({ children }) => {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col bg-red-500">
-          <nav className="flex items-center justify-between py-4 px-10 bg-blue-900 text-white shadow">
-            <h1 className="text-2xl font-semibold">
+        <div className="flex-1 flex flex-col">
+          <nav className="flex flex-col lg:flex-row items-center justify-between py-2 lg:py-4 px-4 lg:px-10 bg-blue-900 text-white shadow">
+            <h1 className="text-lg lg:text-2xl font-semibold">
               {isAdmin ? "Admin" : "Employee"} Dashboard
             </h1>
             <div className="flex items-center space-x-5">
@@ -98,7 +98,6 @@ const UserLayout = ({ children }) => {
                 <span className="font-semibold">
                   {userName || "Loading..."}
                 </span>
-                <FaUserCircle className="text-lg mr-2" />
               </div>
               <Link to="/signInUp">
                 <button
@@ -118,10 +117,10 @@ const UserLayout = ({ children }) => {
         <div className="text-white">
           <nav
             className={`${
-              isOpen ? "block w-52 lg:w-64" : "hidden lg:block w-20"
+              isOpen ? "block w-32 lg:w-64" : "hidden lg:block w-20"
             } bg-blue-900 h-full py-6`}
           >
-            <ul className="space-y-6 px-4">
+            <ul className="space-y-6 px-0 lg:px-4">
               <li>
                 <NavLink
                   to={isAdmin ? "/admin/dashboard" : "/employee/dashboard"}
@@ -132,7 +131,7 @@ const UserLayout = ({ children }) => {
                   }
                 >
                   <FaTachometerAlt className="text-lg" />
-                  <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                  <span className={`ml-2 lg:ml-4 ${isOpen ? "block" : "hidden"}`}>
                     Dashboard
                   </span>
                 </NavLink>
@@ -149,7 +148,7 @@ const UserLayout = ({ children }) => {
                       }
                     >
                       <FaClipboard className="text-lg" />
-                      <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                      <span className={`ml-2 lg:ml-4 ${isOpen ? "block" : "hidden"}`}>
                         Leave Requests
                       </span>
                     </NavLink>
@@ -164,7 +163,7 @@ const UserLayout = ({ children }) => {
                       }
                     >
                       <FaUsers className="text-lg" />
-                      <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                      <span className={`ml-2 lg:ml-4 ${isOpen ? "block" : "hidden"}`}>
                         Manage Employees
                       </span>
                     </NavLink>
@@ -181,7 +180,7 @@ const UserLayout = ({ children }) => {
                     }
                   >
                     <FaClipboard className="text-lg" />
-                    <span className={`ml-4 ${isOpen ? "block" : "hidden"}`}>
+                    <span className={`ml-2 lg:ml-4 ${isOpen ? "block" : "hidden"}`}>
                       Request Leave
                     </span>
                   </NavLink>
