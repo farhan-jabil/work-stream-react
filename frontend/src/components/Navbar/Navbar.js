@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { images } from "../../utils/images";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState("");
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,9 +26,6 @@ const Navbar = () => {
     };
   }, [isSticky]);
 
-  useEffect(() => {
-    setCurrentPage(location.pathname);
-  }, [location]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -46,175 +41,91 @@ const Navbar = () => {
       style={{ zIndex: 1000 }}
     >
       <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-4">
-        <Link to="/" className="flex items-center p-4 lg:p-0">
+        <ScrollLink to="hero" className="flex items-center p-4 lg:p-0 cursor-pointer">
           <img
             src={images.logo}
             alt="Flexi Leave Logo"
             className="h-16 mr-2 rounded-xl"
           />
-        </Link>
+        </ScrollLink>
         <ul className="font-medium hidden md:flex p-0 space-x-8">
-          {currentPage === "/features" ? (
-            <>
-              <li>
-                <ScrollLink
-                  to="overview"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Overview
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="use-case"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Use Cases
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="integration"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Integration
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="customization"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Customization
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="user-feedback"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  User Feedback
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="support"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Support
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="contact"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Contact
-                </ScrollLink>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <ScrollLink
-                  to="hero"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Home
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="features"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Features
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="about"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  About
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="pricing"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Pricing
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="testimonial"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Testimonial
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="faq"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  FAQ
-                </ScrollLink>
-              </li>
-              <li>
-                <ScrollLink
-                  to="contact"
-                  smooth={true}
-                  duration={500}
-                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                  activeClass="active"
-                >
-                  Contact
-                </ScrollLink>
-              </li>
-            </>
-          )}
+          <li>
+            <ScrollLink
+              to="hero"
+              smooth={true}
+              duration={500}
+              className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+              activeClass="active"
+            >
+              Home
+            </ScrollLink>
+          </li>
+          <li>
+            <ScrollLink
+              to="features"
+              smooth={true}
+              duration={500}
+              className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+              activeClass="active"
+            >
+              Features
+            </ScrollLink>
+          </li>
+          <li>
+            <ScrollLink
+              to="about"
+              smooth={true}
+              duration={500}
+              className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+              activeClass="active"
+            >
+              About
+            </ScrollLink>
+          </li>
+          <li>
+            <ScrollLink
+              to="pricing"
+              smooth={true}
+              duration={500}
+              className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+              activeClass="active"
+            >
+              Pricing
+            </ScrollLink>
+          </li>
+          <li>
+            <ScrollLink
+              to="testimonial"
+              smooth={true}
+              duration={500}
+              className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+              activeClass="active"
+            >
+              Testimonial
+            </ScrollLink>
+          </li>
+          <li>
+            <ScrollLink
+              to="faq"
+              smooth={true}
+              duration={500}
+              className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+              activeClass="active"
+            >
+              FAQ
+            </ScrollLink>
+          </li>
+          <li>
+            <ScrollLink
+              to="contact"
+              smooth={true}
+              duration={500}
+              className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+              activeClass="active"
+            >
+              Contact
+            </ScrollLink>
+          </li>
         </ul>
         <div className="hidden md:flex">
           <Link to="/signInUp">
@@ -268,175 +179,90 @@ const Navbar = () => {
         >
           <div className="flex flex-col justify-center items-center">
             <ul className="font-medium flex flex-col p-0 py-4 rounded-lg space-y-4 text-center">
-              {currentPage === "/features" ? (
-                <>
-                  <li>
-                    <ScrollLink
-                      to="overview"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Overview
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      to="use-case"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Use Cases
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      to="integration"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Integration
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      to="customization"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Customization
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      to="user-feedback"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      User Feedback
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      to="support"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Support
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="contact"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Contact
-                    </ScrollLink>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li>
-                    <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="hero"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Home
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="features"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Features
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="about"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      About
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="pricing"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Pricing
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="testimonial"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Testimonial
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="faq"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      FAQ
-                    </ScrollLink>
-                  </li>
-                  <li>
-                    <ScrollLink
-                      onClick={toggleMobileMenu}
-                      to="contact"
-                      smooth={true}
-                      duration={500}
-                      className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
-                      activeClass="active"
-                    >
-                      Contact
-                    </ScrollLink>
-                  </li>
-                </>
-              )}
+              <li>
+                <ScrollLink
+                  onClick={toggleMobileMenu}
+                  to="hero"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Home
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  onClick={toggleMobileMenu}
+                  to="features"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Features
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  onClick={toggleMobileMenu}
+                  to="about"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  About
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  onClick={toggleMobileMenu}
+                  to="pricing"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Pricing
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  onClick={toggleMobileMenu}
+                  to="testimonial"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Testimonial
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  onClick={toggleMobileMenu}
+                  to="faq"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  FAQ
+                </ScrollLink>
+              </li>
+              <li>
+                <ScrollLink
+                  onClick={toggleMobileMenu}
+                  to="contact"
+                  smooth={true}
+                  duration={500}
+                  className="nav-link cursor-pointer hover:text-[#9191c4] focus:outline-none transition-colors duration-500 ease-in-out"
+                  activeClass="active"
+                >
+                  Contact
+                </ScrollLink>
+              </li>
             </ul>
             <Link to="/signInUp">
               <button

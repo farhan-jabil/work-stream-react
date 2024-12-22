@@ -11,6 +11,9 @@ const About = () => {
     if (entry.isIntersecting) {
       setIsCounting(true);
     }
+    else {
+      setIsCounting(false);
+    }
   };
 
   useEffect(() => {
@@ -136,7 +139,6 @@ const About = () => {
               </div>
             </div>
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 mt-10">
             <div className="w-full">
               <div

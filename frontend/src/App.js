@@ -2,7 +2,6 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/landing/Home";
-import Features from "./pages/landing/Features";
 import Footer from "./components/footer/Footer";
 import SignInUp from "./layout/SignInUp";
 import AdminDashboard from "./pages/dashboard/admin/AdminDashboard";
@@ -24,16 +23,6 @@ function App() {
               <>
                 <Navbar />
                 <Home />
-                <Footer />
-              </>
-            }
-          />
-          <Route
-            path="/features"
-            element={
-              <>
-                <Navbar />
-                <Features />
                 <Footer />
               </>
             }
