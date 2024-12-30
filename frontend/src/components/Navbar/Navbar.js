@@ -44,8 +44,8 @@ const Navbar = () => {
         <ScrollLink to="hero" className="flex items-center p-4 lg:p-0 cursor-pointer">
           <img
             src={images.logo}
-            alt="Flexi Leave Logo"
-            className="h-16 mr-2 rounded-xl"
+            alt="Work Roster Logo"
+            className="h-20 mr-2 rounded-xl"
           />
         </ScrollLink>
         <ul className="font-medium hidden md:flex p-0 space-x-8">

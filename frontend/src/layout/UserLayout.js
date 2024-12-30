@@ -74,7 +74,7 @@ const UserLayout = ({ children }) => {
             >
               <img
                 src={images.logo}
-                alt="Flexi Leave Logo"
+                alt="Work Roster Logo"
                 className="h-full mr-2 rounded-xl"
               />
             </NavLink>

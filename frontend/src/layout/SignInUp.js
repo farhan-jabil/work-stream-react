@@ -18,7 +18,7 @@ const SignInUp = () => {
           <Link to="/">
             <img
               src={images.logo}
-              alt="Flexi Leave Logo"
+              alt="Work Roster Logo"
               className="h-16 rounded-full shadow-lg"
             />
           </Link>
