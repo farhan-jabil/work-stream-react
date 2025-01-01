@@ -3,19 +3,19 @@ const feedbacks = [
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
       name: "John Doe",
       title: "HR Manager at TechCorp",
-      feedback: "Work Roster has transformed our leave management process. The intuitive interface and seamless integration have saved us countless hours of administrative work.",
+      feedback: "Work Stream has transformed our leave management process. The intuitive interface and seamless integration have saved us countless hours of administrative work.",
     },
     {
       avatar: "https://randomuser.me/api/portraits/women/65.jpg",
       name: "Jane Smith",
       title: "CEO at Innovate Solutions",
-      feedback: "The automated leave request system is a game-changer. We've seen a significant improvement in productivity and employee satisfaction since implementing Work Roster.",
+      feedback: "The automated leave request system is a game-changer. We've seen a significant improvement in productivity and employee satisfaction since implementing Work Stream.",
     },
     {
       avatar: "https://randomuser.me/api/portraits/men/85.jpg",
       name: "Michael Brown",
       title: "Team Lead at DevWorks",
-      feedback: "Managing remote teams has never been easier. Work Roster ensures everyone stays on the same page, no matter where they are located.",
+      feedback: "Managing remote teams has never been easier. Work Stream ensures everyone stays on the same page, no matter where they are located.",
     },
     {
       avatar: "https://randomuser.me/api/portraits/women/20.jpg",
@@ -27,7 +27,7 @@ const feedbacks = [
       avatar: "https://randomuser.me/api/portraits/men/12.jpg",
       name: "David Wilson",
       title: "COO at Enterprise Solutions",
-      feedback: "Work Roster;s customizable features have allowed us to tailor the system to our specific needs. It's flexible, user-friendly, and efficient.",
+      feedback: "Work Stream;s customizable features have allowed us to tailor the system to our specific needs. It's flexible, user-friendly, and efficient.",
     },
   ];
   

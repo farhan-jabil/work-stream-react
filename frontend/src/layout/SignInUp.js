@@ -18,7 +18,7 @@ const SignInUp = () => {
           <Link to="/">
             <img
               src={images.logo}
-              alt="Work Roster Logo"
+              alt="Work Stream Logo"
               className="h-16 rounded-full shadow-lg"
             />
           </Link>

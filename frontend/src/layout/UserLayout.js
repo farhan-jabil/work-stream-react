@@ -3,7 +3,6 @@ import {
   FaBars,
   FaClipboard,
   FaUsers,
-  FaUserCircle,
   FaSignOutAlt,
   FaTachometerAlt,
 } from "react-icons/fa";
@@ -74,7 +73,7 @@ const UserLayout = ({ children }) => {
             >
               <img
                 src={images.logo}
-                alt="Work Roster Logo"
+                alt="Work Stream Logo"
                 className="h-full mr-2 rounded-xl"
               />
             </NavLink>

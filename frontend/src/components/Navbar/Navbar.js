@@ -44,7 +44,7 @@ const Navbar = () => {
         <ScrollLink to="hero" className="flex items-center p-4 lg:p-0 cursor-pointer">
           <img
             src={images.logo}
-            alt="Work Roster Logo"
+            alt="Work Stream Logo"
             className="h-20 mr-2 rounded-xl"
           />
         </ScrollLink>
