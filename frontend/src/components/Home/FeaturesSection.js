@@ -8,7 +8,7 @@ const FeatureSection = () => {
           Key Features
         </h2>
         <p className="text-lg md:text-xl mb-12 text-gray-600">
-          Discover the powerful tools designed to simplify your leave management
+          Explore the tools designed to streamline your employee management
           process.
         </p>
 
@@ -16,51 +16,53 @@ const FeatureSection = () => {
           <div className="feature-item bg-gradient-to-r from-green-100 via-blue-50 to-blue-100 p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 min-h-[300px] flex items-center justify-center text-center">
             <div>
               <h3 className="text-2xl font-semibold mb-4 text-blue-800">
-                Automated Requests
+                Employee Profiles
               </h3>
               <p className="text-gray-700">
-                Streamline the leave request process with automated workflows.
+                Manage detailed employee profiles, including roles, contact
+                details, and performance data.
               </p>
             </div>
           </div>
           <div className="feature-item bg-gradient-to-r from-green-100 via-blue-50 to-blue-100 p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 min-h-[300px] flex items-center justify-center text-center">
             <div>
               <h3 className="text-2xl font-semibold mb-4 text-blue-800">
-                Real-Time Tracking
+                Task Assignments
               </h3>
               <p className="text-gray-700">
-                Keep track of leave balances and approvals in real time.
+                Assign tasks to employees and track their progress in real time.
               </p>
             </div>
           </div>
           <div className="feature-item bg-gradient-to-r from-green-100 via-blue-50 to-blue-100 p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 min-h-[300px] flex items-center justify-center text-center">
             <div>
               <h3 className="text-2xl font-semibold mb-4 text-blue-800">
-                Comprehensive Reports
+                Performance Analytics
               </h3>
               <p className="text-gray-700">
-                Generate detailed reports to monitor leave trends and patterns.
+                Generate detailed analytics on employee performance and
+                productivity.
               </p>
             </div>
           </div>
           <div className="feature-item bg-gradient-to-r from-green-100 via-blue-50 to-blue-100 p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 min-h-[300px] flex items-center justify-center text-center">
             <div>
               <h3 className="text-2xl font-semibold mb-4 text-blue-800">
-                Customizable Policies
+                Attendance Management
               </h3>
               <p className="text-gray-700">
-                Tailor leave policies to fit your organization’s needs.
+                Keep track of employee attendance and working hours efficiently.
               </p>
             </div>
           </div>
           <div className="feature-item bg-gradient-to-r from-green-100 via-blue-50 to-blue-100 p-8 rounded-xl shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 min-h-[300px] flex items-center justify-center text-center">
             <div>
               <h3 className="text-2xl font-semibold mb-4 text-blue-800">
-                User-Friendly Interface
+                Custom Workflows
               </h3>
               <p className="text-gray-700">
-                Navigate through the system with ease using an intuitive
-                interface.
+                Create custom workflows to automate routine employee management
+                tasks.
               </p>
             </div>
           </div>
@@ -70,8 +72,7 @@ const FeatureSection = () => {
                 Notifications & Alerts
               </h3>
               <p className="text-gray-700">
-                Receive timely notifications and alerts for pending actions and
-                approvals.
+                Get real-time alerts for key updates, deadlines, and actions.
               </p>
             </div>
           </div>

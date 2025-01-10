@@ -40,7 +40,7 @@ const Navbar = () => {
       } ${isSticky ? "p-1" : ""} transition-all duration-2000`}
       style={{ zIndex: 1000 }}
     >
-      <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-4">
+      <nav className={`max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ${isSticky ? "py-0 md:py-2" : "py-0 md:py-4"}`}>
         <ScrollLink to="hero" className="flex items-center p-4 lg:p-0 cursor-pointer">
           <img
             src={images.logo}

@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import testimonials from "../../utils/testimonialItems";
+import { testimonialsData } from "../../utils/data";
 
 const Testimonial = () => {
   const settings = {
@@ -39,7 +39,7 @@ const Testimonial = () => {
         Discover How We've Made a Difference.
         </p>
         <Slider {...settings} className="relative">
-          {testimonials.map((testimonial, index) => (
+          {testimonialsData.map((testimonial, index) => (
             <div key={index} className="px-4 h-full">
               <div className="bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 text-white rounded-lg shadow-lg p-8 mb-8 flex flex-col justify-between h-full min-h-[350px]">
                 <div className="flex justify-center mb-4">
