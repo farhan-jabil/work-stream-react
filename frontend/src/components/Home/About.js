@@ -38,7 +38,7 @@ const About = () => {
     <div className="about py-32 bg-gradient-to-r from-blue-100 via-blue-50 to-green-100">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800 text-center">
-          About Us!
+          About Us
         </h2>
         <p className="text-lg md:text-xl mb-12 text-gray-600 text-center">
           We are dedicated to providing the best leave management solutions for
